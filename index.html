@@ -1,0 +1,1918 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Undangan Pernikahan</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,WONK@1,9..144,100..900,1&family=Parisienne&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* Tambahkan font custom dari Google Fonts atau dari file lokal */
+      @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap");
+
+      @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,WONK@1,9..144,100..900,1&family=Parisienne&display=swap");
+
+      /* Definisikan font custom */
+      .fraunces-font {
+        font-family: "Fraunces", sans-serif;
+      }
+      .parisienne-font {
+        font-family: "Parisienne", sans-serif;
+      }
+      .fraunces-font-italic {
+        font-family: "Fraunces", sans-serif;
+        font-style: italic;
+      }
+    </style>
+
+    <style>
+      /* Menambahkan font lokal */
+      @font-face {
+        font-family: "AgainstFont";
+        src: url("against_regular.otf"), url("against_regular.ttf");
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      .against-font {
+        font-family: "AgainstFont", sans-serif;
+      }
+    </style>
+
+    <style>
+      /* Atur batas maksimal lebar untuk tampilan desktop */
+      .max-phone-width {
+        max-width: 450px;
+        width: 450px;
+      }
+
+      /* Background untuk undangan */
+      .invitation-bg {
+        background-image: url("bg.webp");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      /* Optional smooth transition for opening modal */
+      .modal-open {
+        transition: opacity 0.3s ease;
+      }
+      .modal-closed {
+        opacity: 0;
+        pointer-events: none;
+      }
+    </style>
+
+    <style>
+      @keyframes fade-in-top-right {
+        0% {
+          opacity: 0;
+          transform: translate3d(50%, -50%, 0);
+        }
+        100% {
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+        }
+      }
+      @keyframes fade-in-top-left {
+        0% {
+          opacity: 0;
+          transform: translate3d(-50%, -50%, 0);
+        }
+        100% {
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+        }
+      }
+
+      @keyframes fade-in-bottom-left {
+        0% {
+          opacity: 0;
+          transform: translate3d(-50%, 50%, 0);
+        }
+        100% {
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+        }
+      }
+      @keyframes fade-in-bottom-right {
+        0% {
+          opacity: 0;
+          transform: translate3d(50%, 50%, 0);
+        }
+        100% {
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+        }
+      }
+
+      @keyframes fade-in-top-down {
+        0% {
+          opacity: 0;
+          transform: translate3d(0, -50%, 0);
+        }
+        100% {
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+        }
+      }
+      @keyframes fade-in-bottom-up {
+        0% {
+          opacity: 0;
+          transform: translate3d(0, 50%, 0);
+        }
+        100% {
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+        }
+      }
+
+      @keyframes fade-in-left {
+        0% {
+          opacity: 0;
+          transform: translate3d(-50%, 0, 0);
+        }
+        100% {
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+        }
+      }
+      @keyframes fade-in-right {
+        0% {
+          opacity: 0;
+          transform: translate3d(50%, 0, 0);
+        }
+        100% {
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+        }
+      }
+
+      @keyframes zoom-in {
+        0% {
+          opacity: 0;
+          transform: scale3d(0.3, 0.3, 0.3);
+        }
+        80% {
+          opacity: 0.8;
+          transform: scale3d(1.1, 1.1, 1.1);
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      /* Kelas animasi */
+      .animate-fade-in-top-down {
+        animation: fade-in-top-down 2.6s ease-out;
+      }
+
+      .animate-fade-in-bottom-up {
+        animation: fade-in-bottom-up 2.6s ease-out;
+      }
+      .animate-fade-in-top-left {
+        animation: fade-in-top-left 2.5s ease-out forwards;
+      }
+      .animate-fade-in-top-right {
+        animation: fade-in-top-right 2.5s ease-out forwards;
+      }
+
+      .animate-fade-in-bottom-left {
+        animation: fade-in-bottom-left 2.5s ease-out forwards;
+      }
+      .animate-fade-in-bottom-right {
+        animation: fade-in-bottom-right 2.5s ease-out forwards;
+      }
+      .animate-fade-in-left {
+        animation: fade-in-left 2.5s ease-in;
+      }
+      .animate-fade-in-right {
+        animation: fade-in-right 2.5s ease-in;
+      }
+      .animate-zoom-in {
+        animation: zoom-in 2.5s ease-in-out;
+      }
+    </style>
+  </head>
+  <body
+    class="flex flex-col h-[100%] bg-[#5d071f] md:w-[450px] md:max-w-[450px] md:mx-auto items-center justify-center px-2"
+  >
+    <video
+      id="dummyVideo"
+      autoplay
+      loop
+      muted
+      playsinline
+      style="display: none"
+    >
+      <source src="audiobg.mp3" type="audio/mp3" />
+    </video>
+
+    <audio id="music" loop>
+      <source src="audiobg.mp3" type="audio/mp3" />
+    </audio>
+
+    <div
+      class="relative w-full h-screen rounded-xl overflow-x-hidden overflow-y-hidden flex flex-col justify-center items-center text-center content-page"
+      id="splashPage"
+    >
+      <div class="invitation-bg w-full h-[100%] rounded-xl overflow-x-hidden">
+        <!-- Top Decorative Images -->
+        <div class="absolute top-0 w-full animate-fade-in-top-down">
+          <img src="tm.webp" class="rounded-lg" />
+        </div>
+        <div
+          class="absolute top-0 left-0 w-[50%] animate-fade-in-top-left rounded-lg"
+        >
+          <img src="tl.webp" />
+        </div>
+        <div class="absolute top-0 right-0 w-[50%] animate-fade-in-top-right">
+          <img src="tr.webp" />
+        </div>
+
+        <!-- Bottom Decorative Images -->
+        <div class="absolute bottom-0 w-full animate-fade-in-bottom-up">
+          <img src="bm.webp" />
+        </div>
+        <div
+          class="absolute bottom-0 left-0 w-[50%] animate-fade-in-bottom-left"
+        >
+          <img src="bl.webp" />
+        </div>
+        <div
+          class="absolute bottom-0 right-0 w-[50%] animate-fade-in-bottom-right"
+        >
+          <img src="br.webp" />
+        </div>
+
+        <!-- Left Centered Image -->
+        <div
+          class="absolute left-0 top-1/2 transform -translate-y-1/2 w-[23px]"
+        >
+          <img src="left.webp" class="animate-fade-in-left" />
+        </div>
+
+        <div
+          class="absolute right-0 top-1/2 transform -translate-y-1/2 w-[23px]"
+        >
+          <img src="right.webp" class="animate-fade-in-right" />
+        </div>
+        <!-- Teks di tengah halaman -->
+        <div
+          class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 w-full flex items-center justify-center flex-col"
+        >
+          <div class="text-center mb-6">
+            <h2
+              class="text-xl font-medium fraunces-font text-white animate-fade-in-top-down"
+            >
+              THE WEDDING OF
+            </h2>
+          </div>
+
+          <div class="text-center mb-6 flex flex-row justify-center gap-2">
+            <div class="flex flex-col">
+              <h2
+                class="text-[50px] font-medium against-font text-[#d4b051] animate-zoom-in"
+              >
+                AR
+              </h2>
+              <h3
+                class="text-lg font-regular fraunces-font-italic text-[#d4b051] animate-fade-in-top-down"
+              >
+                Aswar & Rahmah
+              </h3>
+            </div>
+            <div class="flex justify-center items-center">
+              <img
+                src="hearts.png"
+                width="42px"
+                height="42px"
+                alt=""
+                class="animate-zoom-in"
+              />
+            </div>
+            <div class="flex flex-col">
+              <h2
+                class="text-[50px] font-medium against-font text-[#d4b051] animate-zoom-in"
+              >
+                AK
+              </h2>
+              <h3
+                class="text-lg font-regular fraunces-font-italic text-[#d4b051] animate-fade-in-top-down"
+              >
+                Asriati & Khaidir
+              </h3>
+            </div>
+          </div>
+
+          <div
+            class="text-center mb-6 text-xl fraunces-font text-white animate-fade-in-bottom-up"
+          >
+            20 ✤ 11 ✤ 2024
+          </div>
+
+          <div
+            class="text-center mb-6 text-xl fraunces-font text-white flex flex-col gap-4"
+          >
+            <h1 class="animate-fade-in-bottom-up">
+              Kepada Yth<br />Bapak/Ibu/Saudara/I
+            </h1>
+            <h2 class="invite animate-fade-in-bottom-up">Nama Tamu</h2>
+          </div>
+
+          <button
+            onclick="showInvitation()"
+            class="rounded-lg px-2 py-3 bg-[#d4b051] w-fit flex items-center justify-center animate-fade-in-bottom-up fraunces-font text-[#5d071f] font-bold text-md"
+          >
+            Buka Undangan
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="hidden relative w-full h-[calc(100vh-68px)] overflow-x-hidden overflow-y-hidden invitation-bg rounded-t-2xl flex flex-col justify-center"
+      id="pages"
+    >
+      <div
+        class="relative w-full h-full flex flex-col justify-center content-page"
+        id="coverPage"
+      >
+        <!-- Top Decorative Images -->
+        <div class="absolute top-0 w-full animate-fade-in-top-down">
+          <img src="tm.webp" class="rounded-lg" />
+        </div>
+        <div
+          class="absolute top-0 left-0 w-[50%] animate-fade-in-top-left rounded-lg"
+        >
+          <img src="tl.webp" />
+        </div>
+        <div class="absolute top-0 right-0 w-[50%] animate-fade-in-top-right">
+          <img src="tr.webp" />
+        </div>
+
+        <!-- Bottom Decorative Images -->
+        <div class="absolute bottom-0 w-full animate-fade-in-bottom-up">
+          <img src="bm.webp" />
+        </div>
+        <div
+          class="absolute bottom-0 left-0 w-[50%] animate-fade-in-bottom-left"
+        >
+          <img src="bl.webp" />
+        </div>
+        <div
+          class="absolute bottom-0 right-0 w-[50%] animate-fade-in-bottom-right"
+        >
+          <img src="br.webp" />
+        </div>
+
+        <!-- Left Centered Image -->
+        <div
+          class="absolute left-0 top-1/2 transform -translate-y-1/2 w-[23px]"
+        >
+          <img src="left.webp" class="animate-fade-in-left" />
+        </div>
+
+        <div
+          class="absolute right-0 top-1/2 transform -translate-y-1/2 w-[23px]"
+        >
+          <img src="right.webp" class="animate-fade-in-right" />
+        </div>
+
+        <div class="text-center mb-6">
+          <h2
+            class="text-xl font-medium fraunces-font text-white animate-fade-in-top-down"
+          >
+            THE WEDDING OF
+          </h2>
+        </div>
+
+        <div class="text-center mb-6 flex flex-row justify-center gap-2">
+          <div class="flex flex-col">
+            <h2
+              class="text-[50px] font-medium against-font text-[#d4b051] animate-zoom-in"
+            >
+              AR
+            </h2>
+            <h3
+              class="text-lg font-regular fraunces-font-italic text-[#d4b051] animate-fade-in-top-down"
+            >
+              Aswar & Rahmah
+            </h3>
+          </div>
+          <div class="flex justify-center items-center">
+            <img
+              src="hearts.png"
+              width="42px"
+              height="42px"
+              alt=""
+              class="animate-zoom-in"
+            />
+          </div>
+          <div class="flex flex-col">
+            <h2
+              class="text-[50px] font-medium against-font text-[#d4b051] animate-zoom-in"
+            >
+              AK
+            </h2>
+            <h3
+              class="text-lg font-regular fraunces-font-italic text-[#d4b051] animate-fade-in-top-down"
+            >
+              Asriati & Khaidir
+            </h3>
+          </div>
+        </div>
+
+        <div
+          class="text-center mb-6 text-xl fraunces-font text-white animate-fade-in-bottom-up"
+        >
+          20 ✤ 11 ✤ 2024
+        </div>
+
+        <div
+          class="text-center mb-6 text-xl fraunces-font text-white flex flex-col gap-4"
+        >
+          <h1 class="animate-fade-in-bottom-up">
+            Kepada Yth<br />Bapak/Ibu/Saudara/I
+          </h1>
+          <h2 class="invite animate-fade-in-bottom-up">Nama Tamu</h2>
+        </div>
+      </div>
+
+      <div
+        class="relative w-full h-full flex flex-col justify-center content-page"
+        id="openingPage"
+      >
+        <!-- Top Decorative Images -->
+        <div class="absolute top-0 w-full animate-fade-in-top-down">
+          <img src="tm.webp" class="rounded-lg" />
+        </div>
+        <div
+          class="absolute top-0 left-0 w-[50%] animate-fade-in-top-left rounded-lg"
+        >
+          <img src="tl.webp" />
+        </div>
+        <div class="absolute top-0 right-0 w-[50%] animate-fade-in-top-right">
+          <img src="tr.webp" />
+        </div>
+
+        <!-- Bottom Decorative Images -->
+        <div class="absolute bottom-0 w-full animate-fade-in-bottom-up">
+          <img src="bm.webp" />
+        </div>
+        <div
+          class="absolute bottom-0 left-0 w-[50%] animate-fade-in-bottom-left"
+        >
+          <img src="bl.webp" />
+        </div>
+        <div
+          class="absolute bottom-0 right-0 w-[50%] animate-fade-in-bottom-right"
+        >
+          <img src="br.webp" />
+        </div>
+
+        <!-- Left Centered Image -->
+        <div
+          class="absolute left-0 top-1/2 transform -translate-y-1/2 w-[23px]"
+        >
+          <img src="left.webp" class="animate-fade-in-left" />
+        </div>
+
+        <div
+          class="absolute right-0 top-1/2 transform -translate-y-1/2 w-[23px]"
+        >
+          <img src="right.webp" class="animate-fade-in-right" />
+        </div>
+        <div class="flex flex-col justify-center items-center gap-3">
+          <h1
+            class="against-font text-md font-bold text-[#d4b051] items-center"
+          >
+            Bismillahirrahmanirrahim
+          </h1>
+
+          <div
+            style="
+              height: 290px;
+              width: 220px;
+              margin: auto;
+              border-radius: 10rem 10rem 1rem 1rem;
+              overflow: hidden;
+            "
+          >
+            <img
+              src="lamaran_aswar2.jpg"
+              alt="250812-gallery-Szl2OAbY6B.jpg"
+              style="width: 100%; height: 100%; object-fit: cover"
+            />
+          </div>
+          <h3 class="text-md fraunces-font-italic text-white text-center p-4">
+            Dengan rahmat dan ridho Allah SWT, kami mengundang Anda untuk
+            menghadiri <br />
+            pernikahan kami.
+          </h3>
+        </div>
+      </div>
+
+      <div
+        class="relative w-full h-full flex flex-col justify-center content-page"
+        id="bridePage"
+      >
+        <!-- Top Decorative Images -->
+        <div class="absolute top-0 w-full animate-fade-in-top-down">
+          <img src="tm.webp" class="rounded-lg" />
+        </div>
+        <div
+          class="absolute top-0 left-0 w-[50%] animate-fade-in-top-left rounded-lg"
+        >
+          <img src="tl.webp" />
+        </div>
+        <div class="absolute top-0 right-0 w-[50%] animate-fade-in-top-right">
+          <img src="tr.webp" />
+        </div>
+
+        <!-- Bottom Decorative Images -->
+        <div class="absolute bottom-0 w-full animate-fade-in-bottom-up">
+          <img src="bm.webp" />
+        </div>
+        <div
+          class="absolute bottom-0 left-0 w-[50%] animate-fade-in-bottom-left"
+        >
+          <img src="bl.webp" />
+        </div>
+        <div
+          class="absolute bottom-0 right-0 w-[50%] animate-fade-in-bottom-right"
+        >
+          <img src="br.webp" />
+        </div>
+
+        <!-- Left Centered Image -->
+        <div
+          class="absolute left-0 top-1/2 transform -translate-y-1/2 w-[23px]"
+        >
+          <img src="left.webp" class="animate-fade-in-left" />
+        </div>
+
+        <div
+          class="absolute right-0 top-1/2 transform -translate-y-1/2 w-[23px]"
+        >
+          <img src="right.webp" class="animate-fade-in-right" />
+        </div>
+
+        <div class="justify-center items-center flex flex-col gap-2">
+          <div
+            class="animate-fade-in-right"
+            style="
+              height: 200px;
+              width: 200px;
+              margin: auto;
+              border: 2px solid #d4b051;
+              overflow: hidden;
+              border-radius: 100px;
+            "
+          >
+            <img
+              src="rahmah1.jpg"
+              alt="male.png"
+              style="width: 100%; height: 100%; object-fit: cover"
+            />
+          </div>
+          <p
+            class="text-xl parisienne-font text-[#d4b051] animate-fade-in-right"
+          >
+            Nurrahma Azzahra Azhar Yusuf, S.Pd
+          </p>
+          <p
+            class="text-md fraunces-font text-white text-center animate-fade-in-right"
+          >
+            Putri dari Azhar Jusuf Salim <br />& Hasni Muhammad, S.Sos.
+          </p>
+
+          <div
+            class="rounded-lg z-10 px-2 py-3 bg-[#d4b051] flex flex-row items-center justify-center gap-2 animate-fade-in-bottom-up"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 2476 2476"
+              id="instagram"
+            >
+              <path
+                d="M825.4 1238c0-227.9 184.7-412.7 412.6-412.7 227.9 0 412.7 184.8 412.7 412.7 0 227.9-184.8 412.7-412.7 412.7-227.9 0-412.6-184.8-412.6-412.7m-223.1 0c0 351.1 284.6 635.7 635.7 635.7s635.7-284.6 635.7-635.7-284.6-635.7-635.7-635.7S602.3 886.9 602.3 1238m1148-660.9c0 82 66.5 148.6 148.6 148.6 82 0 148.6-66.6 148.6-148.6s-66.5-148.5-148.6-148.5-148.6 66.5-148.6 148.5M737.8 2245.7c-120.7-5.5-186.3-25.6-229.9-42.6-57.8-22.5-99-49.3-142.4-92.6-43.3-43.3-70.2-84.5-92.6-142.3-17-43.6-37.1-109.2-42.6-229.9-6-130.5-7.2-169.7-7.2-500.3s1.3-369.7 7.2-500.3c5.5-120.7 25.7-186.2 42.6-229.9 22.5-57.8 49.3-99 92.6-142.4 43.3-43.3 84.5-70.2 142.4-92.6 43.6-17 109.2-37.1 229.9-42.6 130.5-6 169.7-7.2 500.2-7.2 330.6 0 369.7 1.3 500.3 7.2 120.7 5.5 186.2 25.7 229.9 42.6 57.8 22.4 99 49.3 142.4 92.6 43.3 43.3 70.1 84.6 92.6 142.4 17 43.6 37.1 109.2 42.6 229.9 6 130.6 7.2 169.7 7.2 500.3 0 330.5-1.2 369.7-7.2 500.3-5.5 120.7-25.7 186.3-42.6 229.9-22.5 57.8-49.3 99-92.6 142.3-43.3 43.3-84.6 70.1-142.4 92.6-43.6 17-109.2 37.1-229.9 42.6-130.5 6-169.7 7.2-500.3 7.2-330.5 0-369.7-1.2-500.2-7.2M727.6 7.5c-131.8 6-221.8 26.9-300.5 57.5-81.4 31.6-150.4 74-219.3 142.8C139 276.6 96.6 345.6 65 427.1 34.4 505.8 13.5 595.8 7.5 727.6 1.4 859.6 0 901.8 0 1238s1.4 378.4 7.5 510.4c6 131.8 26.9 221.8 57.5 300.5 31.6 81.4 73.9 150.5 142.8 219.3 68.8 68.8 137.8 111.1 219.3 142.8 78.8 30.6 168.7 51.5 300.5 57.5 132.1 6 174.2 7.5 510.4 7.5 336.3 0 378.4-1.4 510.4-7.5 131.8-6 221.8-26.9 300.5-57.5 81.4-31.7 150.4-74 219.3-142.8 68.8-68.8 111.1-137.9 142.8-219.3 30.6-78.7 51.6-168.7 57.5-300.5 6-132.1 7.4-174.2 7.4-510.4s-1.4-378.4-7.4-510.4c-6-131.8-26.9-221.8-57.5-300.5-31.7-81.4-74-150.4-142.8-219.3C2199.4 139 2130.3 96.6 2049 65c-78.8-30.6-168.8-51.6-300.5-57.5-132-6-174.2-7.5-510.4-7.5-336.3 0-378.4 1.4-510.5 7.5"
+                fill="#ffffff"
+              ></path>
+            </svg>
+            <a
+              class="fraunces-font text-white text-md"
+              href="https://www.instagram.com/nrrahmahazhar_/"
+            >
+              Instagram</a
+            >
+          </div>
+        </div>
+      </div>
+      <div
+        class="relative w-full h-full flex flex-col justify-center content-page"
+        id="groomPage"
+      >
+        <!-- Top Decorative Images -->
+        <div class="absolute top-0 w-full animate-fade-in-top-down">
+          <img src="tm.webp" class="rounded-lg" />
+        </div>
+        <div
+          class="absolute top-0 left-0 w-[50%] animate-fade-in-top-left rounded-lg"
+        >
+          <img src="tl.webp" />
+        </div>
+        <div class="absolute top-0 right-0 w-[50%] animate-fade-in-top-right">
+          <img src="tr.webp" />
+        </div>
+
+        <!-- Bottom Decorative Images -->
+        <div class="absolute bottom-0 w-full animate-fade-in-bottom-up">
+          <img src="bm.webp" />
+        </div>
+        <div
+          class="absolute bottom-0 left-0 w-[50%] animate-fade-in-bottom-left"
+        >
+          <img src="bl.webp" />
+        </div>
+        <div
+          class="absolute bottom-0 right-0 w-[50%] animate-fade-in-bottom-right"
+        >
+          <img src="br.webp" />
+        </div>
+
+        <!-- Left Centered Image -->
+        <div
+          class="absolute left-0 top-1/2 transform -translate-y-1/2 w-[23px]"
+        >
+          <img src="left.webp" class="animate-fade-in-left" />
+        </div>
+
+        <div
+          class="absolute right-0 top-1/2 transform -translate-y-1/2 w-[23px]"
+        >
+          <img src="right.webp" class="animate-fade-in-right" />
+        </div>
+        <div class="justify-center items-center flex flex-col gap-2">
+          <div
+            class="animate-fade-in-left"
+            style="
+              height: 200px;
+              width: 200px;
+              margin: auto;
+              border: 2px solid #d4b051;
+              overflow: hidden;
+              border-radius: 100px;
+            "
+          >
+            <img
+              src="aswar1.jpg"
+              alt="male.png"
+              style="width: 100%; height: 100%; object-fit: cover"
+            />
+          </div>
+          <p
+            class="text-xl parisienne-font text-[#d4b051] animate-fade-in-left"
+          >
+            Aswar Ahad H. Syamsuddin, SH
+          </p>
+          <p
+            class="text-md fraunces-font text-white text-center animate-fade-in-left"
+          >
+            Putra dari<br />
+            alm. H. Syamsuddin H. Toha <br />& Hj. Rugaiyah B Dg. Nai
+          </p>
+
+          <div
+            class="rounded-lg z-10 px-2 py-3 bg-[#d4b051] flex flex-row items-center justify-center gap-2 mt-8 animate-fade-in-bottom-up"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 2476 2476"
+              id="instagram"
+            >
+              <path
+                d="M825.4 1238c0-227.9 184.7-412.7 412.6-412.7 227.9 0 412.7 184.8 412.7 412.7 0 227.9-184.8 412.7-412.7 412.7-227.9 0-412.6-184.8-412.6-412.7m-223.1 0c0 351.1 284.6 635.7 635.7 635.7s635.7-284.6 635.7-635.7-284.6-635.7-635.7-635.7S602.3 886.9 602.3 1238m1148-660.9c0 82 66.5 148.6 148.6 148.6 82 0 148.6-66.6 148.6-148.6s-66.5-148.5-148.6-148.5-148.6 66.5-148.6 148.5M737.8 2245.7c-120.7-5.5-186.3-25.6-229.9-42.6-57.8-22.5-99-49.3-142.4-92.6-43.3-43.3-70.2-84.5-92.6-142.3-17-43.6-37.1-109.2-42.6-229.9-6-130.5-7.2-169.7-7.2-500.3s1.3-369.7 7.2-500.3c5.5-120.7 25.7-186.2 42.6-229.9 22.5-57.8 49.3-99 92.6-142.4 43.3-43.3 84.5-70.2 142.4-92.6 43.6-17 109.2-37.1 229.9-42.6 130.5-6 169.7-7.2 500.2-7.2 330.6 0 369.7 1.3 500.3 7.2 120.7 5.5 186.2 25.7 229.9 42.6 57.8 22.4 99 49.3 142.4 92.6 43.3 43.3 70.1 84.6 92.6 142.4 17 43.6 37.1 109.2 42.6 229.9 6 130.6 7.2 169.7 7.2 500.3 0 330.5-1.2 369.7-7.2 500.3-5.5 120.7-25.7 186.3-42.6 229.9-22.5 57.8-49.3 99-92.6 142.3-43.3 43.3-84.6 70.1-142.4 92.6-43.6 17-109.2 37.1-229.9 42.6-130.5 6-169.7 7.2-500.3 7.2-330.5 0-369.7-1.2-500.2-7.2M727.6 7.5c-131.8 6-221.8 26.9-300.5 57.5-81.4 31.6-150.4 74-219.3 142.8C139 276.6 96.6 345.6 65 427.1 34.4 505.8 13.5 595.8 7.5 727.6 1.4 859.6 0 901.8 0 1238s1.4 378.4 7.5 510.4c6 131.8 26.9 221.8 57.5 300.5 31.6 81.4 73.9 150.5 142.8 219.3 68.8 68.8 137.8 111.1 219.3 142.8 78.8 30.6 168.7 51.5 300.5 57.5 132.1 6 174.2 7.5 510.4 7.5 336.3 0 378.4-1.4 510.4-7.5 131.8-6 221.8-26.9 300.5-57.5 81.4-31.7 150.4-74 219.3-142.8 68.8-68.8 111.1-137.9 142.8-219.3 30.6-78.7 51.6-168.7 57.5-300.5 6-132.1 7.4-174.2 7.4-510.4s-1.4-378.4-7.4-510.4c-6-131.8-26.9-221.8-57.5-300.5-31.7-81.4-74-150.4-142.8-219.3C2199.4 139 2130.3 96.6 2049 65c-78.8-30.6-168.8-51.6-300.5-57.5-132-6-174.2-7.5-510.4-7.5-336.3 0-378.4 1.4-510.5 7.5"
+                fill="#ffffff"
+              ></path>
+            </svg>
+            <a
+              class="fraunces-font text-white text-md"
+              href="https://www.instagram.com/aswarahad07/"
+            >
+              Instagram</a
+            >
+          </div>
+        </div>
+      </div>
+      <div
+        class="relative w-full h-full flex flex-col justify-center content-page"
+        id="quotesPage"
+      >
+        <!-- Top Decorative Images -->
+        <div class="absolute top-0 w-full animate-fade-in-top-down">
+          <img src="tm.webp" class="rounded-lg" />
+        </div>
+        <div
+          class="absolute top-0 left-0 w-[50%] animate-fade-in-top-left rounded-lg"
+        >
+          <img src="tl.webp" />
+        </div>
+        <div class="absolute top-0 right-0 w-[50%] animate-fade-in-top-right">
+          <img src="tr.webp" />
+        </div>
+
+        <!-- Bottom Decorative Images -->
+        <div class="absolute bottom-0 w-full animate-fade-in-bottom-up">
+          <img src="bm.webp" />
+        </div>
+        <div
+          class="absolute bottom-0 left-0 w-[50%] animate-fade-in-bottom-left"
+        >
+          <img src="bl.webp" />
+        </div>
+        <div
+          class="absolute bottom-0 right-0 w-[50%] animate-fade-in-bottom-right"
+        >
+          <img src="br.webp" />
+        </div>
+
+        <!-- Left Centered Image -->
+        <div
+          class="absolute left-0 top-1/2 transform -translate-y-1/2 w-[23px]"
+        >
+          <img src="left.webp" class="animate-fade-in-left" />
+        </div>
+
+        <div
+          class="absolute right-0 top-1/2 transform -translate-y-1/2 w-[23px]"
+        >
+          <img src="right.webp" class="animate-fade-in-right" />
+        </div>
+        <div class="text-center mb-6 flex flex-col justify-center gap-2">
+          <h2
+            class="text-[24px] font-medium against-font text-[#d4b051] animate-fade-in-top-down"
+          >
+            QS. Ar-Rum : 21
+          </h2>
+          <p
+            class="text-lg font-medium fraunces-font text-white animate-fade-in-top-down p-4"
+          >
+            وَمِنْ اٰيٰتِهٖٓ اَنْ خَلَقَ لَكُمْ مِّنْ اَنْفُسِكُمْ اَزْوَاجًا
+            لِّتَسْكُنُوْٓا اِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَّوَدَّةً
+            وَّرَحْمَةًۗ اِنَّ فِيْ ذٰلِكَ لَاٰيٰتٍ لِّقَوْمٍ يَّتَفَكَّرُوْنَ
+            ۝٢١
+          </p>
+          <p
+            class="text-md font-medium fraunces-font text-white animate-fade-in-bottom-up p-4"
+          >
+            Di antara tanda-tanda (kebesaran)-Nya ialah bahwa Dia menciptakan
+            pasangan-pasangan untukmu dari (jenis) dirimu sendiri agar kamu
+            merasa tenteram kepadanya. Dia menjadikan di antaramu rasa cinta dan
+            kasih sayang. Sesungguhnya pada yang demikian itu benar-benar
+            terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir.
+          </p>
+        </div>
+      </div>
+      <div
+        class="relative w-full h-full flex flex-col justify-center content-page"
+        id="galleryPage"
+      >
+        <!-- Top Decorative Images -->
+        <div class="absolute top-0 w-full animate-fade-in-top-down">
+          <img src="tm.webp" class="rounded-lg" />
+        </div>
+        <div
+          class="absolute top-0 left-0 w-[50%] animate-fade-in-top-left rounded-lg"
+        >
+          <img src="tl.webp" />
+        </div>
+        <div class="absolute top-0 right-0 w-[50%] animate-fade-in-top-right">
+          <img src="tr.webp" />
+        </div>
+
+        <!-- Bottom Decorative Images -->
+        <div class="absolute bottom-0 w-full animate-fade-in-bottom-up">
+          <img src="bm.webp" />
+        </div>
+        <div
+          class="absolute bottom-0 left-0 w-[50%] animate-fade-in-bottom-left"
+        >
+          <img src="bl.webp" />
+        </div>
+        <div
+          class="absolute bottom-0 right-0 w-[50%] animate-fade-in-bottom-right"
+        >
+          <img src="br.webp" />
+        </div>
+
+        <!-- Left Centered Image -->
+        <div
+          class="absolute left-0 top-1/2 transform -translate-y-1/2 w-[23px]"
+        >
+          <img src="left.webp" class="animate-fade-in-left" />
+        </div>
+
+        <div
+          class="absolute right-0 top-1/2 transform -translate-y-1/2 w-[23px]"
+        >
+          <img src="right.webp" class="animate-fade-in-right" />
+        </div>
+
+        <div class="grid grid-cols-3 gap-2 p-1 max-w-[18rem] mx-auto z-10">
+          <div
+            class="overflow-hidden rounded-md"
+            onclick="openModal('prewed1.jpg')"
+          >
+            <img
+              src="prewed1.jpg"
+              alt="Gallery Image 1"
+              class="w-full h-full object-cover animate-zoom-in"
+            />
+          </div>
+          <div
+            class="overflow-hidden col-span-2 rounded-md"
+            onclick="openModal('prewed2.jpg')"
+          >
+            <img
+              src="prewed2.jpg"
+              alt="Gallery Image 2"
+              class="w-full h-full object-cover animate-zoom-in"
+            />
+          </div>
+          <div
+            class="overflow-hidden rounded-md"
+            onclick="openModal('prewed3.jpg')"
+          >
+            <img
+              src="prewed3.jpg"
+              alt="Gallery Image 3"
+              class="w-full h-full object-cover animate-zoom-in"
+            />
+          </div>
+          <div
+            class="overflow-hidden rounded-md"
+            onclick="openModal('prewed4.jpg')"
+          >
+            <img
+              src="prewed4.jpg"
+              alt="Gallery Image 4"
+              class="w-full h-full object-cover animate-zoom-in"
+            />
+          </div>
+          <div
+            class="overflow-hidden rounded-md"
+            onclick="openModal('prewed5.jpg')"
+          >
+            <img
+              src="prewed5.jpg"
+              alt="Gallery Image 5"
+              class="w-full h-full object-cover animate-zoom-in"
+            />
+          </div>
+          <div
+            class="overflow-hidden col-span-2 rounded-md"
+            onclick="openModal('prewed6.jpg')"
+          >
+            <img
+              src="prewed6.jpg"
+              alt="Gallery Image 6"
+              class="w-full h-full object-cover animate-zoom-in"
+            />
+          </div>
+          <div
+            class="overflow-hidden rounded-md"
+            onclick="openModal('lamaran_aswar2.jpg')"
+          >
+            <img
+              src="lamaran_aswar2.jpg"
+              alt="Gallery Image 7"
+              class="w-full h-full object-cover animate-zoom-in"
+            />
+          </div>
+        </div>
+        <!-- Modal Overlay -->
+        <div
+          id="modal"
+          class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center modal-closed z-20"
+          onclick="closeModal()"
+        >
+          <div class="relative max-w-3xl p-4" onclick="event.stopPropagation()">
+            <!-- Close Button -->
+            <button
+              onclick="closeModal()"
+              class="absolute top-3 right-5 text-black text-3xl font-bold"
+            >
+              &times;
+            </button>
+            <!-- Modal Image -->
+            <img
+              id="modal-image"
+              src=""
+              alt="Zoomed Image"
+              class="w-full h-auto rounded-lg shadow-lg"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="relative w-full h-full flex flex-col content-page"
+        id="acaraPage"
+      >
+        <!-- Top Decorative Images -->
+        <div class="absolute top-0 w-full animate-fade-in-top-down">
+          <img src="tm.webp" class="rounded-lg" />
+        </div>
+        <div
+          class="absolute top-0 left-0 w-[50%] animate-fade-in-top-left rounded-lg"
+        >
+          <img src="tl.webp" />
+        </div>
+        <div class="absolute top-0 right-0 w-[50%] animate-fade-in-top-right">
+          <img src="tr.webp" />
+        </div>
+
+        <!-- Bottom Decorative Images -->
+        <div class="absolute bottom-0 w-full animate-fade-in-bottom-up">
+          <img src="bm.webp" />
+        </div>
+        <div
+          class="absolute bottom-0 left-0 w-[50%] animate-fade-in-bottom-left"
+        >
+          <img src="bl.webp" />
+        </div>
+        <div
+          class="absolute bottom-0 right-0 w-[50%] animate-fade-in-bottom-right"
+        >
+          <img src="br.webp" />
+        </div>
+
+        <!-- Left Centered Image -->
+        <div
+          class="absolute left-0 top-1/2 transform -translate-y-1/2 w-[23px]"
+        >
+          <img src="left.webp" class="animate-fade-in-left" />
+        </div>
+
+        <div
+          class="absolute right-0 top-1/2 transform -translate-y-1/2 w-[23px]"
+        >
+          <img src="right.webp" class="animate-fade-in-right" />
+        </div>
+        <div class="flex flex-col gap-2 justify-center items-center">
+          <div class="animate-fade-in-top-down">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="136"
+              height="86.9"
+              xml:space="preserve"
+              style="transform: scale(0.7); overflow: visible; opacity: 0.5"
+            >
+              <g>
+                <path
+                  d="M56.8 59.4c.6-.1 1.2-.3 1.8-.6.3-.1.6-.3.8-.4.1-.1.3-.2.4-.3.1-.1.3-.2.4-.3h-.4l-.4.2c-.2 0-.5.1-.7.1-.5.1-1 .1-1.5.1-1 0-2 0-3-.1s-2-.2-2.9-.5c-.9-.3-1.8-.7-2.4-1.4-.3-.3-.6-.7-.8-1.1-.2-.4-.4-.8-.4-1.2-.1-.8.2-1.8.8-2.2.3-.2.7-.3 1.1-.2.3.1.6.4.7.7.1.3 0 .7-.3 1-.3.3-.7.5-1.2.7l-1 .4 1.1.2c1.4.3 2.9-.8 2.8-2.2 0-.7-.4-1.3-.9-1.7-.5-.4-1.2-.6-1.8-.5-1.3.3-2.2 1.3-2.6 2.5-.4 1.2-.3 2.6.3 3.7.6 1.2 1.6 2.1 2.7 2.6 1.1.6 2.4.8 3.7.9 1.3 0 2.5-.1 3.7-.4zm-3.6-.3c-1.2-.1-2.3-.3-3.3-.9-1-.5-1.9-1.3-2.5-2.2-.6-1-.8-2.2-.5-3.3.1-.6.4-1.1.8-1.5.4-.4.9-.8 1.5-.9.3-.1.6-.1.8 0 .3.1.5.2.7.4.4.4.7.9.7 1.5 0 .3-.1.6-.3.9 0 0 0-.1.1-.1.1-.3.1-.7 0-1-.2-.6-.7-1.1-1.3-1.3-.6-.2-1.3 0-1.8.3s-.9.8-1.1 1.4c-.2.5-.3 1.1-.2 1.7.1 1.1.7 2.1 1.5 2.9.8.8 1.8 1.2 2.8 1.5 1 .3 2.1.3 3.1.4 1 0 2 0 3-.2l1.5-.3c.2-.1.5-.1.7-.2l.3-.1c-.1.1-.3.1-.4.2-.3.1-.5.2-.8.3-.6.2-1.1.3-1.7.4-1.2.1-2.4.2-3.6.1z"
+                  fill="#d4b051"
+                ></path>
+                <path
+                  d="M135.9 50.7c-.1-.6-.5-1.1-.9-1.6-.9-.9-2.1-1.1-3.3-.9l-.7.1.7.2c.5.1 1 .4 1.4.6.4.3.7.7.8 1.2 0 .5-.3.9-.7 1.1-.4.2-1 .2-1.4 0-.9-.4-1.7-1.1-2.2-2-.6-.9-1-1.8-1.4-2.8-.9-2-2.2-3.7-3.7-5.2-1.6-1.4-3.5-2.6-5.5-3.4-1-.4-2.1-.7-3.1-.8-.1 0-.3 0-.4-.1-.3-.4-.8-.8-1.3-1-.6-.3-1.4-.5-2.2-.3-.7.2-1.4.6-2 1.1-.5.5-1 1.2-1.2 1.9-.2.6-.3 1.3-.3 1.9-.5.5-1.1 1-1.7 1.4-2.8.9-5.7.8-8.3-.4-.7-.3-1.3-.6-1.9-1.1-.6-.5-1.1-1-1.5-1.6-.4-.6-.6-1.4-.7-2.1 0-.7.2-1.5.6-2.1.4-.6.9-1.1 1.5-1.7.5-.6 1-1.3 1.4-2 .7-1.4 1.1-3 1.1-4.6 0-1.6-.3-3.2-.7-4.7-.4-1.4-.9-2.7-1.5-3.9l.1-.1c.3-.6.5-1.2.5-1.9.1-1.3-.3-2.6-1.1-3.7L94.2 10l1 2.7c.2.7.1 1.5-.3 2.2-.4.7-1 1.3-1.6 2-1.3 1.3-2.4 2.9-3.2 4.5-1.6 3.3-2.1 7.1-1.5 10.8.3 1.8.7 3.6 1.5 5.3.7 1.7 1.8 3.3 3.1 4.6 2.1 2.1 5.1 3.3 8 3.1-.8.3-1.6.5-2.4.6-.9.2-1.9.3-2.8.4-.9.1-1.9.1-2.9 0s-1.9-.3-2.8-.5c-.9-.2-1.8-.6-2.7-.9-2.5-1-4.9-2.3-7.1-3.8-.6-.6-1-1.3-1.4-2-.7-1.3-1.1-2.7-1.4-4.1-.1-.7-.2-1.5-.2-2.2 0-.7.1-1.5.3-2.2.4-1.4 1.5-2.7 2.8-3.2 1.3-.5 2.9-.3 3.8.7.9.9 1.1 2.6.2 3.5-.4.5-1.1.7-1.7.7-.6 0-1.2-.3-1.5-.9-.4-.3-.4-.6-.4-.9 0-.3.2-.6.5-.8.3-.2.6-.3.9-.1.3.1.6.4.7.7h.1c0-.4-.3-.8-.6-1-.4-.2-.9-.2-1.3 0s-.7.6-.8 1c-.1.4-.1.9.1 1.3s.5.7.9 1c.4.2.8.4 1.3.4.9.1 1.8-.3 2.4-.9.6-.7.9-1.6.8-2.5-.1-.9-.5-1.7-1.1-2.2-.6-.6-1.4-.9-2.3-1-.8-.1-1.6.1-2.3.5-.7.4-1.3.9-1.8 1.5s-.8 1.3-1.1 2c-.5 1.4-.7 3-.5 4.6.2 1.5.7 3.1 1.5 4.4.1.2.3.4.4.6-.4-.3-.7-.6-1.1-.8-2.9-2.2-5.4-5-7-8.3.3-.2.6-.5.8-.8.3-.6.4-1.3.3-1.9-.1-.5-.4-1-.8-1.3 1.3-.1 2.7-.6 3.7-1.5 1.6-1.3 2.5-3.4 2.6-5.4.3.3.6.6 1 .8.5.3 1.1.5 1.7.6.6.1 1.3.1 1.9 0 .6-.2 1.2-.5 1.7-.9 1-.8 1.6-1.9 2-3.1.4-1.2.5-2.4.3-3.6-.2-1.2-.5-2.3-1-3.4s-1.2-2.1-2.1-2.9c-.5-.4-1-.7-1.6-.9-.6-.2-1.1-.4-1.7-.5-1-.2-2.1-.1-3 .2v-.4c0-.4-.1-.7-.2-1-.2-.6-.5-1.3-.8-1.9-.4-.6-.8-1.1-1.4-1.5-.6-.4-1.2-.8-1.8-1-1.3-.5-2.7-.5-4-.2h-.1c-1.3-.2-2.6 0-3.9.4-.6.2-1.2.5-1.8.9-.6.4-1 .9-1.4 1.4-.4.5-.7 1.2-.9 1.8-.1.3-.2.7-.2 1v.5c-1-.3-2-.4-3-.2-.6.1-1.2.3-1.7.5-.6.2-1.1.6-1.6.9-1 .8-1.6 1.8-2.1 2.9-.5 1.1-.9 2.2-1 3.4-.2 1.2-.1 2.4.3 3.6.4 1.2 1 2.3 2 3.1.5.4 1.1.7 1.7.9.6.2 1.3.2 1.9 0 .6-.1 1.2-.4 1.7-.6.3-.2.6-.4.9-.7.2 2.1 1.1 4.1 2.7 5.4 1.1.8 2.4 1.3 3.7 1.4-.4.3-.7.8-.8 1.3-.1.3-.1.6 0 .9 0 .3.2.6.4.9.2.3.5.5.8.7-1.6 3.5-4.2 6.3-7.1 8.5-.4.3-.7.6-1.1.8.1-.2.3-.4.4-.6.8-1.3 1.3-2.8 1.5-4.4.2-1.5 0-3.1-.5-4.6-.3-.7-.6-1.4-1.1-2-.5-.6-1.1-1.1-1.8-1.5-.7-.4-1.5-.5-2.3-.5-.8.1-1.6.4-2.3 1-.6.6-1 1.4-1.1 2.2-.1.9.1 1.8.8 2.5.6.6 1.5 1 2.4.9.4 0 .9-.2 1.3-.4s.7-.6.9-1c.2-.4.3-.9.1-1.3-.1-.4-.4-.8-.8-1-.4-.2-.9-.2-1.3 0s-.6.6-.6 1h.1c.1-.4.4-.6.7-.7.3-.1.6 0 .9.1.3.2.4.5.5.8 0 .3 0 .6-.2.9-.3.6-.9.9-1.5.9s-1.3-.3-1.7-.7c-.9-.9-.7-2.5.2-3.5.9-.9 2.5-1.2 3.8-.7 1.3.5 2.4 1.8 2.8 3.2.2.7.3 1.4.3 2.2 0 .7-.1 1.5-.2 2.2-.3 1.4-.7 2.9-1.4 4.1-.4.7-.9 1.4-1.4 2-2.2 1.5-4.6 2.7-7.1 3.8-.9.3-1.8.7-2.7.9-.9.2-1.9.4-2.8.5-1 .1-1.9.1-2.9 0-.9-.1-1.9-.2-2.8-.4l-2.4-.6c2.9.2 5.9-1 8-3.1 1.4-1.3 2.4-2.9 3.1-4.6.8-1.7 1.2-3.5 1.5-5.3.5-3.6.1-7.4-1.5-10.8-.8-1.7-1.9-3.2-3.2-4.5-.6-.7-1.3-1.3-1.6-2-.4-.7-.6-1.5-.3-2.2l1-2.7-2.5 2.3c-.8 1-1.2 2.4-1.1 3.7 0 .7.2 1.3.5 1.9l.1.1c-.6 1.3-1.1 2.6-1.5 3.9-.5 1.5-.8 3.1-.7 4.7 0 1.6.4 3.2 1.1 4.6.4.7.8 1.4 1.4 2 .5.6 1.1 1.1 1.5 1.7.4.6.6 1.3.6 2.1 0 .7-.3 1.5-.7 2.1-.4.6-.9 1.2-1.5 1.6-.6.5-1.3.8-1.9 1.1-2.8 1.2-5.8 1.4-8.5.5-.6-.4-1.1-.9-1.7-1.4 0-.7-.1-1.3-.3-1.9-.2-.7-.7-1.4-1.2-1.9s-1.2-.9-2-1.1c-.8-.2-1.6 0-2.2.3-.5.2-.9.6-1.3 1-.1 0-.3 0-.4.1-1.1.2-2.1.5-3.1.8-2 .7-3.9 1.9-5.5 3.4s-2.9 3.2-3.7 5.2c-.4 1-.8 1.9-1.4 2.8-.5.9-1.3 1.6-2.2 2-.5.2-1 .2-1.4 0-.4-.2-.8-.7-.7-1.1 0-.5.3-.9.8-1.2.4-.3.9-.5 1.4-.6l.6-.3-.7-.1c-1.1-.2-2.4 0-3.3.9-.4.4-.7 1-.9 1.6-.1.6-.1 1.3.1 1.8.5 1.2 1.7 1.9 2.8 2.1 1.2.2 2.4-.1 3.4-.7 1-.5 1.9-1.3 2.8-2 .8-.7 1.6-1.4 2.6-2 1.1-.7 2.3-1.3 3.6-1.7.2 0 .5 0 .7-.1 1.4-.1 2.8-.2 4.2-.4 1.4-.2 2.8-.7 4-1.4 4.1 1.8 8.2 3.6 12 5.7 2 1.1 3.9 2.3 5.3 4 .7.8 1.3 1.8 1.7 2.8.4 1 .6 2.1.5 3.2 0 1.1-.3 2.2-.8 3.1-.5.9-1.3 1.8-2.2 2.4-.9.6-2 .9-3.1.9s-2.2-.5-3.1-1.1c-.9-.7-1.6-1.6-1.8-2.7-.2-1.1-.1-2.3.6-3.1.7-.8 1.9-1.3 2.9-.9s1.6 1.6 1.1 2.5l-.6 1.3 1-1c.4-.5.7-1.1.7-1.7 0-.6-.2-1.2-.5-1.8-.3-.5-.9-.9-1.4-1.2-.6-.2-1.2-.3-1.8-.3-2.5.1-4.6 2.1-5 4.6-.2 1.2 0 2.5.7 3.5.6 1.1 1.5 1.9 2.5 2.5 2 1.2 4.5 1.7 6.8 1.3 1.2-.2 2.3-.7 3.3-1.4s1.7-1.8 2.1-2.9c.4-1.1.7-2.3.7-3.4.1-1.2 0-2.3-.3-3.5-.5-2.3-1.6-4.4-3.2-6.1-1-1.1-2.1-2-3.4-2.7.3.1.5.1.8.1 1.7.3 3.5.3 5.1-.1 1.7-.3 3.3-.9 4.9-1.6 1.6-.7 3.1-1.4 4.6-2.2 1.5-.8 2.9-1.7 4.3-2.8 1.4-1 2.7-2.2 3.8-3.5 1.1-1.3 2.1-2.7 2.8-4.3.5-1 .9-2.1 1.1-3.2-.2 1.7-.3 3.5-.6 5.2-.3 2.3-.7 4.6-1.3 6.8-.5 2.1-1.5 4.2-3.1 5.8-.8.8-1.8 1.4-2.8 1.8-1 .4-2.2.5-3.2.3l-.2.7c1.5.4 3.1.5 4.6.2 1.3-.2 2.6-.6 3.8-1.2-.4 1.1-1.1 2-1.9 2.8-1 .9-2.2 1.6-3.5 1.9l.1.3c1-.2 2-.4 2.9-.8.9-.4 1.8-.8 2.7-1.4.8-.6 1.6-1.2 2.3-1.9.2-.2.4-.5.7-.7 0 .9-.1 1.8-.3 2.7-.2 1-.6 2-1.1 2.8-.5.9-1.1 1.7-1.7 2.5-.7.7-1.4 1.4-2.3 2L59.4 64l2.5-.6c1.2-.3 2.4-.6 3.5-1.1.1 0 .1-.1.2-.1v.1c-.1.2-.3.5-.4.7-.3.5-.6.9-1 1.3-.3.4-.7.8-1.1 1.1-.8.7-1.7 1.2-2.7 1.5-1 .3-2 .3-3 .1-1-.2-1.9-.8-2.3-1.7-.2-.4-.2-.9 0-1.3s.6-.7 1-.7.9.3 1 .7c.1.4-.2 1-.6 1.1l-1.1.2 1.1.1c.5.1 1.1-.2 1.4-.6.3-.4.4-1 .3-1.5-.1-.5-.5-.9-.9-1.1-.5-.2-1-.3-1.5-.2-1 .2-1.8 1.1-2 2.1-.3 1-.1 2 .3 3 .4.9 1.1 1.7 2.1 2.2.5.2 1 .3 1.5.3s1-.1 1.5-.2c1.9-.5 3.5-1.5 4.9-2.9.8-.8 1.4-1.7 1.9-2.7.1-.3.2-.5.3-.8.1-.3.1-.6.2-.8v-.4c.2-.1.4-.3.6-.4v8.7c-.4 1.4-.8 2.8-1.9 3.7-.5.4-1.2.7-2 .6-.7-.1-1.4-.4-2.3-.3-.8.1-1.6.7-1.9 1.5-.1.4-.2.9 0 1.3.1.4.4.8.7 1.1.3.3.7.5 1.1.6.4.1.8.1 1.2-.1.8-.2 1.4-.6 2-1.1.6-.4 1.1-.9 1.6-1.4.5-.5 1-1.1 1.3-1.7.1-.1.1-.2.2-.4l.1 3.1c0 1.1.1 2.1 0 3.2-.1 1-.3 2.1-.3 3.2 0 .6 0 1.1.2 1.7.2.6.5 1.1.9 1.5h.1l.2.1.1-.1.1-.1c.4-.4.7-1 .8-1.5.1-.6.2-1.1.1-1.7-.1-1.1-.3-2.2-.4-3.2-.1-1.1 0-2.1 0-3.2l.2-3.2c.1.2.2.4.3.5.4.6.8 1.2 1.3 1.7s1 1 1.6 1.4c.6.4 1.2.9 2 1.1.4.1.8.1 1.2.1.4-.1.8-.3 1.1-.6.3-.3.6-.7.7-1.1.1-.4.1-.9 0-1.3-.3-.8-1-1.4-1.9-1.5-.8-.1-1.5.3-2.3.3-.7.1-1.4-.2-2-.6-1.1-.9-1.5-2.3-1.9-3.7v-.2c0-.8 0-1.7.1-2.5V61c.2.2.5.4.8.5h-.1c-.1 0-.1.1-.1.1v.4c0 .3.1.6.2.8.1.3.2.5.3.8.5 1 1.1 1.9 1.9 2.7 1.3 1.3 3 2.4 4.9 2.9.5.1 1 .2 1.5.2s1-.1 1.5-.3c1-.4 1.7-1.3 2.1-2.2.4-.9.6-2 .3-3s-1-1.9-2-2.1c-.5-.1-1-.1-1.5.2-.5.2-.8.7-.9 1.1-.2.5-.1 1.1.3 1.5.3.4.8.7 1.4.6l1.1-.1-1.6-.1c-.4-.1-.7-.6-.6-1.1.1-.4.6-.7 1-.7s.8.3 1 .7c.2.4.2.9 0 1.3-.3.9-1.3 1.4-2.3 1.7-1 .2-2 .2-3-.1-1-.3-1.9-.8-2.7-1.5-.4-.3-.8-.7-1.1-1.1-.3-.4-.7-.8-1-1.3-.1-.2-.3-.5-.4-.7-.1-.1-.1-.2-.2-.3 0 0 0-.1-.1-.1.2.1.3.2.5.3.5.3 1.1.5 1.7.6.6.2 1.2.3 1.7.5l1.3.3-1.1-.8c-.8-.6-1.6-1.3-2.2-2.1-.6-.8-1.2-1.6-1.7-2.5-.5-.9-.8-1.9-1.1-2.9-.2-.8-.3-1.7-.4-2.6.2.2.3.4.5.6.7.8 1.5 1.5 2.3 2 1.7 1.2 3.6 2 5.7 2.3l.2-.8c-2.1-.5-4-2.1-5-4 2.5 1.1 5.4 1.3 8 .6l-.2-.9c-1.1.2-2.2.1-3.2-.3s-2-1-2.8-1.7c-1.6-1.5-2.6-3.7-3.3-5.9-.7-2.2-1-4.5-1.3-6.8-.2-1.7-.4-3.5-.6-5.3.2 1.1.6 2.2 1.1 3.2.7 1.6 1.7 3 2.8 4.3 1.1 1.3 2.4 2.4 3.8 3.5 1.4 1 2.8 2 4.3 2.8 1.5.8 3 1.5 4.6 2.2 1.6.7 3.2 1.3 4.9 1.6 1.7.3 3.4.3 5.1.1.3 0 .5-.1.8-.1-1.3.7-2.4 1.6-3.4 2.7-1.6 1.7-2.7 3.8-3.2 6.1-.2 1.1-.3 2.3-.3 3.5.1 1.2.3 2.3.7 3.4.4 1.1 1.1 2.1 2.1 2.9.9.8 2.1 1.2 3.3 1.4 2.4.4 4.8-.1 6.8-1.3 1-.6 1.9-1.4 2.5-2.5.6-1.1.8-2.3.7-3.5-.3-2.4-2.5-4.5-5-4.6-.6 0-1.2.1-1.8.3-.6.2-1.1.7-1.4 1.2-.3.5-.5 1.2-.5 1.8 0 .6.3 1.3.7 1.7l1 1-.6-1.3c-.4-.9.2-2.1 1.1-2.5 1-.4 2.2 0 2.9.9.7.9.9 2 .6 3.1-.2 1.1-.9 2-1.8 2.7-.9.7-2 1.1-3.1 1.1s-2.2-.3-3.1-.9c-.9-.6-1.7-1.4-2.2-2.4-.5-.9-.8-2-.8-3.1s.2-2.2.5-3.2c.4-1 1-1.9 1.7-2.8 1.4-1.7 3.4-2.9 5.3-4 3.9-2.1 8-3.9 12-5.7 1.2.8 2.6 1.2 4 1.4 1.4.2 2.8.3 4.2.4.2 0 .5 0 .7.1 1.3.4 2.5 1 3.6 1.7.9.6 1.7 1.3 2.6 2 .8.7 1.7 1.5 2.8 2 1 .5 2.2.9 3.4.7 1.2-.2 2.3-.9 2.8-2.1.7-.3.7-1 .6-1.5zM70.2 62zm2.2 4c.9.8 1.9 1.4 3 1.7 1.1.3 2.4.4 3.5 0 .6-.2 1.1-.4 1.6-.8s.9-.9 1.1-1.5c.2-.6.2-1.3-.2-1.9-.2-.3-.4-.5-.7-.7-.3-.2-.6-.3-1-.2-.3 0-.6.1-.9.4-.3.2-.5.5-.5.8 0 .3 0 .7.2.9l-.3-.3c-.3-.3-.4-.8-.2-1.2.1-.4.4-.8.8-1 .4-.2.9-.2 1.3-.1.8.2 1.4 1 1.6 1.9.2.8 0 1.7-.4 2.5s-1 1.4-1.7 1.8c-.7.4-1.7.4-2.5.3-1.8-.2-3.6-1.1-4.9-2.4-.7-.8-1.3-1.7-1.7-2.8 0-.1-.1-.2-.1-.4.5 1.3 1.1 2.3 2 3zM102 44.8h-1.3c-.9-.1-1.8-.2-2.6-.5-1.7-.5-3.2-1.5-4.4-2.8-1.3-1.2-2.3-2.7-3.1-4.3-.8-1.6-1.5-3.3-1.8-5.1-.3-1.8-.3-3.6.1-5.4.3-1.8 1-3.5 1.8-5 .9-1.6 1.9-3 3.2-4.2.6-.6 1.3-1.3 1.8-2.2.2-.3.3-.6.4-1 .1.5.2 1 .2 1.5 0 .6-.1 1.1-.4 1.6-.2.5-.6 1-.9 1.5-.4.5-.7 1-1 1.5-.3.6-.5 1.2-.6 1.8-.2 1.2-.1 2.5.4 3.6h.1c-.4-1.1-.4-2.4-.1-3.5.1-.6.4-1.1.7-1.6.3-.5.7-.9 1.1-1.4l.9-1.2c.3 1.3.7 2.6 1 3.9.3 1.5.6 3 .5 4.5-.1 1.5-.3 3-.9 4.3-.3.7-.7 1.3-1.2 1.9-.5.6-1 1.2-1.3 1.9-.4.7-.5 1.6-.4 2.4.1.8.3 1.6.7 2.2.8 1.4 2 2.5 3.4 3.3 1.4.7 3.1 1 4.6 1 1.1 0 2.1-.3 3.1-.6-1.4.8-2.6 1.4-4 1.9zM82.1 8.1c.9.6 1.8 1.4 2.3 2.4.3.5.5 1 .6 1.6.1.6.2 1.1.2 1.7 0 1.1-.2 2.2-.6 3.3-.4 1-1 2-1.8 2.6-1.5 1.4-3.9 1.2-5.6-.1v-.5c-.1-1.2-.4-2.3-.9-3.3-.6-1-1.4-1.9-2.4-2.4-.9-.5-1.9-.7-2.9-.6.4-.5.8-.9 1.2-1.3.2-.2.5-.4.7-.6.3-.2.6-.3.9-.5.3-.1.7-.2 1-.1.3.1.6.3.9.5.6.3 1.1.6 1.7 1.1h.1c-.1-.8-.7-1.5-1.5-1.7-.4-.2-.8-.2-1.2-.2h-.3c-.1-.3-.1-.5-.1-.8 0-.3.1-.6.2-.9.1-.3.3-.5.5-.8.2-.2.4-.3.7-.6.1-.1.3-.3.4-.5 2.1-.1 4.2.5 5.9 1.7zM68 14.4c-.2-.4-.5-.8-.9-1.1-.5-.4-1-.6-1.6-.8h-.2c0-.6-.3-1.2-.7-1.6l.5-.5c.3-.2.5-.4.8-.5.3-.2.6-.4 1-.4s.7.1 1 .4H68.2c.3-.1.7-.1 1-.1.3 0 .6.1.9.2.3.1.6.2.8.4.2.1.3.3.5.5-.4.5-.7 1.2-.7 1.8h-.1c-.6.1-1.1.3-1.6.6-.5.4-.8.7-1 1.1zm-7.6-8.5c0-.3.1-.6.2-.8l.2-.4c.1-.1.1-.3.2-.4.1-.3.3-.5.4-.8.6-1.1 1.5-2 2.7-2.5 1.2-.5 2.5-.6 3.7-.2h.1c1.2-.2 2.5 0 3.6.5s2.1 1.3 2.7 2.3c.4.5.6 1 .8 1.6.1.3.2.6.2.8 0 .3 0 .4-.2.6-.1.1-.2.2-.4.3l-.4.4c-.2.3-.3.6-.4 1 .2.5.3 1.1.5 1.7-.2 0-.4 0-.7-.1-.4 0-.8 0-1.2.2-.3.1-.6.3-.9.5-.1-.2-.1-.4-.3-.6-.2-.4-.6-.7-1-.9-.3-.2-.7-.2-1.2-.1-.4.1-.8.2-1.1.5-.3-.1-.7-.2-1-.2-.4-.1-.8-.1-1.3 0-.4.1-.8.4-1 .8l-.3.6c-.3-.2-.6-.4-.9-.5-.4-.2-.8-.2-1.2-.2-.2 0-.5 0-.7.1.6-1.1.1-2.8-1-3.5-.1-.3-.1-.4-.1-.7zm-1.7 13.2v.6c-1.7 1.2-4.1 1.3-5.5 0-.8-.7-1.4-1.6-1.8-2.6-.4-1-.6-2.1-.6-3.3 0-.6.1-1.1.2-1.7.1-.6.3-1.1.6-1.6.5-1 1.4-1.8 2.3-2.4 1.7-1.2 3.8-1.8 6-1.6.1.2.3.4.4.5.3.2.5.3.7.6.2.2.3.5.5.8.2.5.3 1.1.1 1.7h-.3c-.4 0-.8 0-1.2.1-.7.3-1.4.9-1.5 1.7h.1c.6-.4 1.2-.7 1.7-1.1.3-.2.6-.4.9-.5.3-.1.7 0 1 .1.3.1.6.3.9.5.3.2.5.4.7.6.4.3.7.6 1 1h-1.2c-.6.1-1.2.3-1.7.6-1.1.6-1.9 1.5-2.4 2.6-.6 1-.8 2.2-.9 3.4zm3.2 5.7c-1.6-1.4-2.3-3.6-2.2-5.7 0-1 .3-2.1.7-3 .4-.9 1.1-1.7 2-2.3.9-.5 1.9-.8 2.9-.6.5.1 1 .3 1.4.5.4.3.7.7.9 1.2l.1.2h.5l.1-.1c.2-.5.5-.9.9-1.3.4-.3.9-.5 1.4-.7.5-.1 1.1-.1 1.6 0s1 .3 1.5.6c.9.6 1.6 1.4 2.1 2.4.4 1 .6 2.1.6 3.1 0 2.1-.8 4.3-2.3 5.7-.8.7-1.8 1.2-2.8 1.5-1 .3-2.2.3-3.2 0H68c-1.1.3-2.2.3-3.2 0-1.2-.3-2.1-.8-2.9-1.5zm3.2 4.1c-.1-.2-.1-.5-.1-.7 0-.5.1-.9.3-1.4.9 0 1.8-.1 2.6-.4h.1c.8.3 1.7.5 2.6.5.2.5.3.9.3 1.4 0 .5-.1.9-.4 1.3-.2.4-.6.7-1 .9-.4.2-.9.3-1.4.2H67.8c-.5.2-1 .2-1.5 0s-.8-.7-1-1.1c0-.3-.1-.5-.2-.7zM33.3 43.5c1.6.1 3.2-.3 4.6-1 1.4-.7 2.6-1.9 3.4-3.3.4-.7.6-1.5.7-2.2.1-.8-.1-1.6-.4-2.4-.4-.7-.9-1.3-1.3-1.9-.5-.6-.8-1.2-1.2-1.9-.6-1.3-.9-2.8-.9-4.3-.1-1.5.2-3 .5-4.5.3-1.3.6-2.6 1-3.9l.9 1.2c.4.5.8.9 1.1 1.4.3.5.5 1 .7 1.6.3 1.1.3 2.3-.1 3.5h.1c.5-1.1.7-2.4.4-3.6-.1-.6-.3-1.2-.6-1.8-.3-.6-.7-1.1-1-1.5-.4-.5-.7-1-.9-1.5-.2-.5-.4-1-.4-1.6 0-.5 0-1 .2-1.5.1.3.2.7.4 1 .5.9 1.2 1.5 1.8 2.2 1.3 1.2 2.4 2.7 3.2 4.2.8 1.6 1.5 3.3 1.8 5 .3 1.8.4 3.6.1 5.4-.3 1.8-.9 3.5-1.8 5.1-.9 1.6-1.9 3-3.1 4.3-1.3 1.2-2.7 2.2-4.4 2.8-.8.3-1.7.4-2.6.5H34.1c-1.3-.5-2.6-1.1-3.7-1.9.8.4 1.8.6 2.9.6zm-13.1 3.4c-1.3.2-2.7.2-4.1.3-1.4.1-2.8.4-4.1.9-.7.3-1.3.6-1.9 1-.6.4-1.1.9-1.5 1.5l.1.1c1-1 2.2-1.6 3.5-1.9.5-.1.9-.2 1.4-.3-.7.3-1.4.6-2.1 1-2 1.1-3.5 2.9-5.4 3.8-.9.5-2 .7-3 .6-1-.2-1.9-.7-2.3-1.6-.4-.8-.2-2 .5-2.7.5-.6 1.3-.9 2-.9-.2.1-.5.3-.7.4-.4.3-.8.8-.9 1.4 0 .3.1.6.2.8.2.2.4.4.6.5.8.2 1.4.2 1.9 0 1.1-.4 1.9-1.2 2.5-2.1.6-.9 1.1-1.9 1.5-2.8.2-.5.5-.9.8-1.4.3-.4.6-.9.9-1.3.6-.8 1.3-1.6 2.1-2.2 1.6-1.3 3.3-2.4 5.3-3.1 1-.3 2-.6 3-.7 1-.2 2-.2 2.8.2.4.2.8.5 1 .8.2.3.3.8.3 1.2 0 .4-.2.9-.5 1.3-.2.3-.4.5-.7.8 0-.2.1-.4.1-.5 0-.2 0-.5-.1-.7-.1-.2-.2-.4-.2-.7v-.7c-.1-.2-.2-.4-.4-.6-.2-.2-.4-.3-.7-.3H22c.1.3.2.4.2.6.1.2.2.4.3.5.1.1.3.3.4.5.1.2.1.4 0 .6-.1.2-.2.4-.2.6-.1.2-.1.4-.2.6-.1.3-.1.6-.2.9-.4.2-.9.4-1.4.6.1-.1.2-.3.2-.4.1-.3.1-.5.1-.8 0-.3 0-.5-.1-.8-.1-.3-.1-.5-.1-.8 0-.3.1-.5.1-.8 0-.3-.1-.5-.3-.8-.2-.2-.5-.4-.8-.3v.1c.2.2.2.4.3.6.1.2.1.4.2.6.1.2.3.4.3.7.1.2 0 .5-.1.7-.1.2-.2.5-.2.7-.1.2-.2.4-.2.6-.1.3-.2.6-.3 1-.2.1-.4.1-.7.2 0 0 0-.1.1-.1.1-.2.2-.4.2-.6 0-.2 0-.5-.1-.7-.1-.2-.2-.4-.2-.6v-.7c-.1-.2-.2-.4-.4-.5-.2-.1-.4-.2-.7-.2v.1c.1.2.1.4.2.6.1.2.1.3.2.4.1.1.3.2.4.4.1.2 0 .4 0 .5-.1.2-.2.3-.2.5-.1.1-.2.3-.2.4-.1.2-.2.5-.3.8-.3.1-.6.1-.9.2.1-.1.1-.2.2-.3.1-.2 0-.3 0-.5v-.2c0-.1-.1-.2-.1-.2-.1-.2-.1-.3-.1-.4 0-.1.1-.3.1-.5s-.1-.3-.2-.4c-.1-.1-.2-.2-.5-.3h-.1c-.1.2-.1.4-.1.5v.2c0 .1 0 .1.1.2l.3.3c0 .1 0 .3-.1.4-.1.1-.2.3-.2.4 0 .1-.1.2-.1.4v.7l-1.2.3v-.4c0-.1 0-.2-.1-.3-.1-.1-.2-.2-.2-.3v-.3c.1-.1.1-.2.1-.3 0-.1-.1-.2-.2-.3l-.6-.5v1c0 .1.1.1.2.2s.1.2.1.2c0 .1-.1.2-.2.3-.1.1-.1.2-.1.2 0 .1-.1.1 0 .2 0 .1.1.3.2.4-.2.1-.4.1-.5.2-1 .4-2 .9-2.7 1.7l.1.1c.8-.7 1.8-1.1 2.7-1.4 1-.3 2-.4 3.1-.6 1-.1 2.1-.2 3.2-.5 1-.3 2.1-.7 3-1.3.9-.7 1.7-1.6 1.8-2.9.1-.6-.1-1.3-.4-1.8-.4-.5-.8-.9-1.4-1.2-.8-.4-1.7-.4-2.6-.4.3-.2.7-.4 1.1-.6.6-.2 1.3-.3 1.8-.1 1.2.4 2.1 1.4 2.7 2.6.5 1.2.7 2.6.2 3.9-.5 1.3-1.6 2.2-2.8 2.8-.6.3-1.2.5-1.9.7-.5-.1-1.1 0-1.8.1zm-5-3.5c0-.1.1-.1.1 0h-.1zm46.7-3.9c-2.2 2.5-4.8 4.6-7.6 6.4-1.4.9-2.9 1.8-4.4 2.4-.8.3-1.6.5-2.4.7-.8.2-1.6.3-2.5.4-3.3.4-6.6.2-9.8-1.1v.1c1 .6 2.1 1.1 3.2 1.4 1.5.8 2.8 1.9 3.9 3.2 1.5 1.7 2.4 3.8 2.8 5.9.2 1.1.3 2.2.2 3.3-.1 1.1-.3 2.2-.7 3.2-.4 1-1 1.9-1.9 2.5-.8.6-1.8 1-2.9 1.2-2.1.4-4.4-.1-6.2-1.2-.9-.5-1.7-1.3-2.3-2.2-.5-.9-.7-2-.6-3 .2-2.1 2.1-3.9 4.2-4 1-.1 2.1.3 2.7 1.1.3.5.5 1.2.4 1.8 0-.2-.1-.4-.2-.5-.3-.5-.8-1-1.3-1.2-.6-.2-1.2-.2-1.8 0-.6.2-1.1.6-1.4 1-.7 1-.9 2.2-.6 3.4.3 1.1 1 2.2 1.9 2.9.9.7 2 1.2 3.2 1.3 1.2.1 2.4-.2 3.4-.8 1-.6 1.9-1.4 2.5-2.5.6-1 1-2.2 1-3.4.1-1.2-.1-2.4-.5-3.5s-1.1-2.1-1.8-3c-1.6-1.8-3.6-3-5.6-4-4-2-8.1-3.7-12.2-5.2 1.2-.8 2.2-1.8 2.7-3.1.3-.7.5-1.4.5-2.1.5.6 1.1 1.2 1.7 1.8.7.6 1.5 1.2 2.4 1.7 1.7 1 3.6 1.6 5.5 2 1 .1 2 .2 2.9.2 1 0 1.9-.1 2.9-.2 1.9-.3 3.8-.7 5.7-1.2 1.9-.6 3.7-1.3 5.4-2.3 1.7-.9 3.4-2 4.9-3.2 1.5-1.2 2.9-2.6 4.1-4.2.6-.8 1.1-1.6 1.5-2.5.4-.8.7-1.7 1-2.5.2.1.4.2.7.3.2 0 .3.1.5.1-1.1 3.3-2.9 6.2-5.1 8.6zm1.8 27c-1.3 1.4-3.1 2.2-4.9 2.4-.9.1-1.8.1-2.5-.3s-1.3-1.1-1.7-1.8c-.4-.8-.6-1.7-.4-2.5.2-.8.7-1.6 1.6-1.9.4-.1.9-.1 1.3.1s.7.5.8 1c.1.4.1.9-.2 1.2l-.3.3c.2-.3.3-.6.2-.9-.1-.3-.2-.6-.5-.8-.3-.2-.6-.3-.9-.4-.3 0-.7.1-1 .2-.3.2-.5.4-.7.7-.3.6-.4 1.3-.2 1.9.2.6.6 1.1 1.1 1.5.5.4 1.1.6 1.6.8 1.1.3 2.4.3 3.5 0s2.2-.9 3-1.7c.8-.8 1.5-1.7 2-2.7 0 .1-.1.2-.1.4-.3.7-.9 1.7-1.7 2.5zm1.4 9.4c-.4.6-.8 1.1-1.4 1.5-.6.4-1.3.8-2 .8-.4 0-.7 0-1-.2-.3-.1-.6-.3-.8-.6-.4-.5-.6-1.1-.5-1.7.1-.6.6-1.2 1.3-1.4.7-.2 1.4.1 2.2.3.8.1 1.6-.1 2.3-.5.5-.3.9-.7 1.2-1.1-.1.3-.2.7-.3 1-.3.7-.6 1.3-1 1.9zm3.7 7.7c0 1-.2 2-.8 2.7-.6-.7-.7-1.8-.7-2.7.1-1 .4-2.1.5-3.2.2-2.2.1-4.4 0-6.5 0-.9-.1-1.8-.1-2.7v-1l-.1-.6c0-.7-.1-1.4-.1-2.1-.2-2-.3-4.1-.5-6.1.5-.4.8-.9 1.1-1.5.3.5.7.9 1.1 1.3-.2 2.1-.4 4.2-.5 6.3 0 .6-.1 1.3-.1 1.9l-.1.9c-.1.4 0 .9 0 1.3 0 .8-.1 1.6-.1 2.4 0 2.2-.1 4.3.2 6.5-.1.9.2 2 .2 3.1zm2-9.4c.7.4 1.5.6 2.3.5.8-.1 1.5-.4 2.2-.3.7.2 1.1.8 1.3 1.4.1.6-.1 1.2-.5 1.7-.2.2-.5.4-.8.6-.3.1-.7.2-1 .2-.7 0-1.4-.4-2-.8-.5-.4-1-.9-1.4-1.5-.4-.6-.7-1.2-.9-1.8-.1-.3-.2-.7-.3-1 .2.3.7.7 1.1 1zm-1.9-18.8c.1 1.1.5 2.1.9 3.1.5 1 1.1 1.9 1.8 2.7.5.5 1 1 1.5 1.4-.2 0-.4-.1-.6-.1-.6-.1-1.1-.3-1.7-.6-.5-.3-1-.6-1.5-1-.4-.4-.8-.9-1-1.4l-.2-.3-.1-.4-.2.3-.2.3c-.6 1-1.5 1.7-2.6 2.1-.4.2-.9.3-1.4.5.3-.3.6-.5.8-.8.7-.8 1.3-1.8 1.7-2.7.9-1.9 1.2-4 .9-6.1.3-.4.6-.8.9-1.3.3.5.6.9.9 1.4-.1.9-.1 1.9.1 2.9zm1.7-10.5c.6 2.3 1.6 4.5 3.3 6.3.7.7 1.6 1.3 2.5 1.8-1.5-.2-3.1-.6-4.4-1.4l-1-.5.4 1.1c.5 1.4 1.3 2.6 2.4 3.6-.5-.3-1.1-.6-1.6-.9-.8-.5-1.6-1.2-2.3-1.9-.7-.7-1.3-1.5-1.8-2.3l-.2-.4-.2.4-.1.1c-.5.8-1.1 1.6-1.7 2.4-.7.7-1.4 1.4-2.2 1.9-.8.6-1.7 1-2.6 1.4l-.9.3c.6-.3 1.2-.7 1.7-1.2 1-.9 1.8-2.1 2.3-3.4l.2-.5H64c-1.3.7-2.7 1.1-4.2 1.3-.3 0-.6.1-.9.1h.1c1.2-.4 2.2-1.1 3.1-1.9 1.7-1.7 2.7-4 3.4-6.2.6-2.3.9-4.6 1.1-6.9.2-2.3.3-4.6.4-6.9.4.1.8.1 1.2 0h-.1c.4.2.8.2 1.2.2.1 2.2.2 4.4.4 6.7 0 2.1.3 4.5.9 6.8zm28.7 6.5c-2 1.1-4 2.3-5.6 4-.8.9-1.4 1.9-1.8 3-.4 1.1-.6 2.3-.5 3.5.1 1.2.4 2.4 1 3.4s1.5 1.9 2.5 2.5c1 .6 2.2.9 3.4.8 1.2-.1 2.3-.5 3.2-1.3.9-.7 1.6-1.7 1.9-2.9.3-1.1.1-2.4-.6-3.4-.4-.5-.9-.8-1.4-1-.6-.2-1.2-.2-1.8 0-.6.2-1.1.7-1.3 1.2-.1.2-.1.3-.2.5-.1-.6.1-1.3.4-1.8.6-.8 1.7-1.2 2.7-1.1 2.1.1 3.9 1.9 4.2 4 .1 1-.1 2.1-.6 3-.5.9-1.3 1.6-2.3 2.2-1.9 1.1-4.1 1.5-6.2 1.2-1-.2-2.1-.6-2.9-1.2-.8-.6-1.4-1.5-1.9-2.5-.4-1-.7-2.1-.7-3.2-.1-1.1 0-2.2.2-3.3.4-2.2 1.4-4.2 2.8-5.9 1.1-1.3 2.4-2.4 3.9-3.2 1.1-.3 2.2-.8 3.2-1.4v-.1c-3.1 1.3-6.5 1.5-9.8 1.1-.8-.1-1.6-.2-2.5-.4-.8-.2-1.6-.4-2.4-.7-1.6-.6-3-1.4-4.4-2.4-2.8-1.9-5.4-4-7.6-6.4-2.1-2.4-3.8-5.1-4.7-8.3.2 0 .3-.1.5-.1l.6-.3c.2.8.5 1.6.9 2.3.5.9 1 1.7 1.5 2.5 1.2 1.6 2.6 3 4.1 4.2 1.5 1.2 3.2 2.3 4.9 3.2 1.7.9 3.5 1.7 5.4 2.3 1.9.6 3.8 1 5.7 1.2 1 .1 1.9.2 2.9.2s2-.1 2.9-.2c1.9-.3 3.8-1 5.5-2 .8-.5 1.7-1.1 2.4-1.7.6-.6 1.2-1.2 1.7-1.8.1.7.2 1.4.5 2.1.6 1.3 1.5 2.3 2.7 3.1-4.3 1.4-8.4 3-12.4 5.1zm35.8.8c-.4.9-1.4 1.5-2.3 1.6-1 .1-2-.1-3-.6-1.9-.9-3.4-2.7-5.4-3.8-.7-.4-1.4-.7-2.1-1 .5.1 1 .2 1.4.3 1.3.4 2.5 1 3.5 1.9l.1-.1c-.4-.6-.9-1.1-1.5-1.5-.6-.4-1.2-.8-1.9-1-1.3-.5-2.8-.8-4.1-.9-1.4-.1-2.8-.2-4.1-.3-.7-.1-1.3-.2-2-.4-.6-.2-1.3-.4-1.9-.7-1.2-.6-2.3-1.5-2.8-2.8-.5-1.3-.4-2.7.2-3.9.5-1.2 1.5-2.2 2.7-2.6.6-.2 1.2-.1 1.8.1.4.1.7.3 1.1.6-.8-.1-1.7 0-2.6.4-.5.3-1 .6-1.4 1.2-.4.5-.5 1.2-.4 1.8.2 1.2 1 2.2 1.8 2.9.9.7 2 1.1 3 1.3 1 .3 2.1.4 3.2.5 1 .1 2.1.3 3.1.6s2 .7 2.7 1.4l.1-.1c-.7-.8-1.7-1.3-2.7-1.7-.2-.1-.4-.1-.5-.2.1-.2.1-.3.2-.4v-.2c0-.1-.1-.2-.1-.2-.1-.1-.1-.2-.2-.3 0-.1 0-.2.1-.2.1-.1.2-.1.2-.2v-1l-.6.5c-.1.1-.1.2-.2.3 0 .1.1.2.1.3.1.1.1.2 0 .3 0 .1-.1.2-.2.3-.1.1-.1.2-.1.3v.4l-1.2-.3c.1-.3.1-.5 0-.7 0-.1-.1-.2-.1-.4 0-.1-.1-.2-.2-.4-.1-.1-.1-.3-.1-.4 0-.1.2-.2.3-.3 0-.1.1-.1.1-.2v-.2c0-.1 0-.3-.1-.5h-.1c-.2 0-.4.2-.5.3-.1.1-.2.3-.2.4 0 .2.1.3.1.5s0 .3-.1.4c0 .1-.1.2-.1.2v.7c0 .1.1.2.2.3-.3-.1-.6-.1-.9-.2-.1-.3-.2-.5-.3-.8-.1-.1-.1-.3-.2-.4-.1-.1-.2-.3-.2-.5-.1-.2-.1-.4 0-.5.1-.2.3-.3.4-.4.1-.1.2-.3.2-.4.1-.2.1-.3.2-.6v-.1c-.3 0-.5.1-.7.2-.2.1-.3.3-.4.5-.1.2 0 .5 0 .7 0 .2-.1.4-.2.6-.1.2-.1.4-.1.7 0 .2.1.4.2.6 0 0 0 .1.1.1-.2-.1-.5-.1-.7-.2-.1-.4-.2-.7-.3-1-.1-.2-.1-.4-.2-.6-.1-.2-.1-.4-.2-.7-.1-.2-.1-.5-.1-.7.1-.2.2-.5.3-.7.1-.2.1-.4.2-.6.1-.2.1-.4.3-.6v-.1c-.3-.1-.6.1-.8.3-.2.2-.3.5-.3.8 0 .3.1.5.1.8 0 .3-.1.5-.1.8-.1.3-.1.5-.1.8 0 .3 0 .6.1.8.1.1.1.3.2.4-.5-.2-.9-.4-1.4-.6 0-.3-.1-.6-.2-.9 0-.2-.1-.4-.2-.6-.1-.2-.1-.4-.2-.6-.1-.2-.1-.4 0-.6.1-.2.3-.3.4-.5.1-.1.2-.3.3-.5.1-.2.2-.4.2-.6l-.1-.1c-.3 0-.5.1-.7.3-.2.2-.4.4-.4.6-.1.3 0 .5 0 .7 0 .2-.1.4-.2.7-.1.2-.1.5-.1.7 0 .2 0 .4.1.5-.3-.2-.5-.5-.7-.8-.3-.4-.4-.8-.5-1.3 0-.4.1-.8.3-1.2.2-.4.6-.6 1-.8.8-.4 1.8-.3 2.8-.2 1 .2 2 .4 3 .7 1.9.7 3.7 1.8 5.3 3.1.8.7 1.5 1.4 2.1 2.2.3.4.6.8.9 1.3.3.4.5.9.8 1.4.5.9.9 1.9 1.5 2.8.6.9 1.4 1.7 2.5 2.1.5.2 1.1.2 1.6-.1.3-.1.5-.3.6-.5.2-.2.3-.5.2-.8 0-.6-.4-1.1-.9-1.4-.2-.2-.4-.3-.7-.4.8.1 1.5.4 2 .9 1.2 1.2 1.4 2.3 1 3.2zm-14.3-8.8h-.1.1z"
+                  fill="#d4b051"
+                ></path>
+                <path
+                  d="M86.9 50c-.6-.1-1.3 0-1.8.5-.5.4-.8 1-.9 1.7 0 1.4 1.4 2.5 2.8 2.2l1.1-.2-1-.4c-.4-.2-.9-.4-1.2-.7-.3-.3-.4-.6-.3-1 .1-.3.4-.6.7-.7.4-.1.8 0 1.1.2.7.4.9 1.4.8 2.2-.1.4-.2.9-.4 1.2-.2.4-.5.8-.8 1.1-.6.6-1.5 1.1-2.4 1.4-.9.3-1.9.4-2.9.5-1 .1-2 .1-3 .1-.5 0-1 0-1.5-.1-.2 0-.5-.1-.7-.1l-.4-.1h-.4c.1.1.3.3.4.3.1.1.3.2.4.3.3.2.5.3.8.4.6.3 1.2.4 1.8.6 1.2.3 2.4.4 3.7.4 1.2 0 2.5-.3 3.7-.9 1.1-.6 2.1-1.5 2.7-2.6.6-1.1.7-2.5.3-3.7-.4-1.2-1.3-2.3-2.6-2.6zm1.7 6c-.6 1-1.5 1.7-2.5 2.2-1 .5-2.2.8-3.3.9-1.2.1-2.4 0-3.5-.1-.6-.1-1.2-.2-1.7-.4-.3-.1-.6-.2-.8-.3-.1-.1-.3-.1-.4-.2l.3.1c.2.1.5.1.7.2l1.5.3c1 .1 2 .2 3 .2s2-.1 3.1-.4c1-.3 2-.7 2.8-1.5.8-.7 1.4-1.7 1.5-2.9.1-.6 0-1.1-.2-1.7-.2-.5-.6-1.1-1.1-1.4-.5-.3-1.2-.5-1.8-.3-.6.2-1.1.7-1.3 1.3-.1.3-.1.7 0 1 0 .1 0 .1.1.1-.2-.3-.3-.6-.3-.9 0-.5.2-1.1.7-1.5.2-.2.5-.3.7-.4.3-.1.6-.1.8 0 .6.1 1.1.4 1.5.9.4.4.7 1 .8 1.5.2 1.1 0 2.3-.6 3.3z"
+                  fill="#d4b051"
+                ></path>
+              </g>
+            </svg>
+          </div>
+
+          <h1
+            class="text-[#d4b051] parisienne-font text-2xl animate-fade-in-top-down"
+          >
+            Akad Nikah
+          </h1>
+          <h3 class="fraunces-font text-white text-md animate-fade-in-top-down">
+            Selasa, 19 November 2024
+          </h3>
+          <h3 class="fraunces-font text-white text-md animate-fade-in-top-down">
+            Pukul 10.00 WITA - Selesai
+          </h3>
+
+          <div class="animate-fade-in-bottom-up">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="308.5"
+              height="43.6"
+              xml:space="preserve"
+              style="transform: scale(0.8); overflow: visible; opacity: 0.5"
+            >
+              <g>
+                <path
+                  d="M308.5 21.7c0-.9-.4-1.7-1.1-2.2-.7-.5-1.5-.8-2.3-.9-1.6-.2-3.2-.1-4.8.2-.8.1-1.6.3-2.4.5-.8.2-1.6.4-2.3.6-1.1.3-2.2.7-3.3 1.1 1.5-1 2.9-2.1 4-3.5.7-.9 1.2-1.9 1.4-3.1.2-1.1 0-2.4-.9-3.3-.9-.8-2-1.2-3.2-1.2-.6 0-1.1.1-1.7.3-.5.2-1.1.5-1.4 1-.3.5-.5 1.1-.6 1.6-.1.6-.1 1.2.1 1.7.3 1.1 1.3 1.9 2.2 2.4-.1.7-.5 1.2-1 1.7s-1.2.8-1.9 1.1c-1.3.5-2.7.9-4.1 1-.1-.2-.2-.4-.3-.5.2-.3.4-.7.5-1.1.1-.5-.1-1-.4-1.3-.3-.3-.8-.5-1.2-.7-.4-.1-.9-.2-1.3-.2-.9 0-1.8.6-2.2 1.5-.2.5-.2 1 0 1.4 0 .1.1.3.2.4-.9 0-1.9 0-2.8.2-.5.1-.9.2-1.4.3-.5.1-1 .1-1.4.1H272l-2.4.1c1.2-.2 2.4-.6 3.6-1 1.8-.6 3.5-1.5 5-2.7 1.5-1.1 2.8-2.6 3.8-4.2.9-1.6 1.6-3.4 1.9-5.3.1-.5.1-.9.1-1.4 0-.2 0-.5-.1-.7 0-.2-.1-.5-.1-.7-.2-.9-.6-1.8-1.2-2.5s-1.4-1.3-2.2-1.7c-.9-.4-1.8-.7-2.7-.8-1 0-2 .5-2.5 1.3s-.6 1.9-.3 2.9c.4 1 1.6 1.4 2.6 1.3.5-.1 1-.3 1.4-.6.3-.3.5-.7.6-1.2.1 0 .2.1.3.2.2.1.4.3.5.5.3.4.5.9.6 1.4.2 1-.2 2-1 2.6-.8.6-1.8 1-2.8 1.4l-3 1.2c-2 .9-4 1.8-5.7 3.2-.8.7-1.6 1.6-1.9 2.6-.3 1-.2 2 .2 3h-.5c-.5 0-1.1.2-1.4.7-.3.4-.4.9-.4 1.4 0 .5.2 1 .5 1.4.4.4.9.6 1.4.6.2 0 .3 0 .5-.1-.4.9-.6 2-.3 3.1s1.1 1.9 1.9 2.6c1.7 1.4 3.7 2.3 5.7 3.2l3 1.2c1 .4 2 .8 2.8 1.4.8.6 1.2 1.6 1 2.6-.1.5-.3 1-.6 1.4-.1.2-.3.4-.5.5-.1.1-.2.2-.3.2 0-.5-.3-.9-.6-1.2-.4-.4-.9-.6-1.4-.6-1-.1-2.1.3-2.6 1.3-.4.9-.2 2 .3 2.9.5.9 1.5 1.4 2.5 1.3 1 0 1.9-.4 2.7-.8.8-.4 1.6-1 2.2-1.7.6-.7 1-1.6 1.2-2.5.1-.2.1-.5.1-.7 0-.2.1-.5.1-.7 0-.5 0-1-.1-1.4-.3-1.9-.9-3.7-1.9-5.3-.9-1.7-2.2-3.1-3.8-4.2-1.5-1.1-3.2-2-5-2.7-1.1-.4-2.3-.7-3.5-1l2.3.1h2.9c.5 0 1 0 1.4.1.5.1.9.2 1.4.3.9.1 1.8.2 2.8.2-.1.1-.1.2-.2.4-.2.4-.2 1 0 1.4.4.9 1.3 1.5 2.2 1.5.5 0 .9-.1 1.3-.2s.8-.3 1.2-.7c.3-.3.5-.9.4-1.3-.1-.5-.3-.9-.6-1.2.1-.1.2-.3.3-.4 1.4.2 2.9.5 4.2 1.1.7.3 1.3.6 1.9 1.1.5.4.9 1 1 1.7-.9.5-1.9 1.2-2.2 2.4-.2.6-.2 1.2-.1 1.7.1.6.3 1.1.6 1.6.4.5.9.8 1.4 1 .6.2 1.1.3 1.7.3 1.1 0 2.3-.4 3.2-1.2.9-.8 1.1-2.2.9-3.3-.2-1.1-.7-2.2-1.4-3.1-.9-1.2-2-2.2-3.2-3 .8.3 1.6.6 2.4.8.8.2 1.5.5 2.3.6.8.2 1.6.4 2.4.5 1.6.3 3.2.4 4.9.2.8-.1 1.6-.4 2.3-.9.7-.5 1.1-1.4 1-2.2l.1-.4zm-27.6.2v-.2c.1-.5.4-1 .8-1.2.4-.2.9-.3 1.4-.3.5 0 1 .1 1.3.4.4.3.6.7.7 1.2v.1c0 .5-.2 1-.6 1.3-.4.3-.9.4-1.4.3-.5 0-1-.1-1.4-.4-.4-.2-.7-.7-.8-1.2zm-.1-3c.1-.3.4-.7.7-.9.3-.2.7-.4 1-.5.4-.1.8-.1 1.2.1.4.2.7.5.9.8.4.5.4 1.3.2 2l-.1-.1c-.5-.4-1.1-.6-1.6-.6-.6 0-1.2.2-1.6.6-.2.2-.4.5-.5.8-.3-.8-.5-1.6-.2-2.2zm-14.5-2c.4-1 1.1-1.8 1.9-2.5 1.7-1.3 3.7-2.1 5.7-2.9l3-1.2c1-.4 2-.8 3-1.5.4-.4.8-.8 1.1-1.4.2-.6.3-1.2.2-1.7-.1-.6-.3-1.1-.7-1.6-.2-.2-.4-.5-.6-.6-.1-.1-.3-.2-.4-.2-.2-.1-.4-.1-.6 0l-.1.1v.2c.1.8-.7 1.5-1.5 1.6-.8.1-1.8-.2-2.1-1-.3-.8-.3-1.8.2-2.5.4-.8 1.3-1.3 2.2-1.3.9 0 1.8.3 2.6.7.8.4 1.6.9 2.2 1.7 1.2 1.4 1.5 3.4 1.2 5.2-.7 3.6-2.7 7-5.6 9.3-2.9 2.2-6.4 3.5-10.1 4.2-.1-.3-.2-.7-.5-.9-.2-.3-.6-.4-.9-.5-.4-1.2-.5-2.3-.2-3.2zm-.4 6.5c-.4 0-.9-.1-1.2-.4-.4-.2-.7-.7-.7-1.1 0-.5.3-.9.6-1.2.4-.2.8-.3 1.2-.4.4 0 .8.1 1.1.3.3.3.5.7.6 1.1 0 .4-.1.9-.4 1.3-.3.4-.8.4-1.2.4zm11.9 3.2c2.9 2.2 4.9 5.6 5.6 9.3.3 1.8 0 3.8-1.2 5.2-.6.7-1.4 1.3-2.2 1.7-.8.4-1.7.7-2.6.7-.9 0-1.8-.5-2.2-1.3-.4-.8-.5-1.8-.2-2.5.3-.8 1.3-1.1 2.1-1 .8.1 1.6.8 1.5 1.6v.2l.1.1c.2.1.5.1.6 0 .2-.1.3-.1.4-.2l.6-.6c.3-.5.6-1 .7-1.6.1-.6.1-1.2-.2-1.7-.2-.6-.6-1-1.1-1.4-.9-.7-2-1.1-3-1.5l-3-1.2c-2-.8-4-1.6-5.7-2.9-.8-.7-1.6-1.5-1.9-2.5-.3-1-.2-2.1.1-3 .3-.1.6-.3.8-.5.2-.2.3-.5.4-.8 4 .3 7.5 1.7 10.4 3.9zm-.1-4h-1.4c-.5 0-1-.1-1.4-.2-1-.2-1.9-.3-2.9-.3-.9 0-1.9.1-2.8.4-.5-.1-1-.2-1.5-.2.1-.2.1-.4.1-.6v-.5c.5 0 .9-.1 1.3-.2.9.3 1.9.4 2.8.4 1 0 1.9-.1 2.9-.3.5-.1.9-.2 1.4-.2h1.4c.9-.1 1.9-.2 2.8-.6.1.2.3.5.5.6-.1.2-.1.4-.1.6v.2c0 .2.1.4.1.5-.2.2-.4.4-.5.7-.8-.1-1.7-.3-2.7-.3zm6.9 2.8c-.2.3-.5.6-.9.8-.4.2-.8.2-1.2.1-.4-.1-.7-.3-1-.5-.3-.2-.5-.6-.7-.9-.3-.7-.2-1.5.2-2.2.1.3.3.6.5.9.4.4 1 .6 1.6.6.6 0 1.1-.3 1.5-.6l.1-.1c.3.5.4 1.3-.1 1.9zm11.4 1c.6.9 1.2 1.8 1.3 2.9.2 1 0 2.1-.8 2.8-.7.7-1.8 1.1-2.8 1.1-.5 0-1.1-.1-1.5-.2-.5-.2-.9-.5-1.2-.9-.3-.4-.4-1-.5-1.5-.1-.5-.1-1.1 0-1.6.3-1 1.2-1.7 2.1-2.2h.1v-.1c-.1-.8-.6-1.5-1.2-1.9-.6-.5-1.3-.8-2-1.1-1.4-.5-2.8-.8-4.3-.9.1-.2.2-.5.3-.8v-.1c0-.3-.1-.5-.2-.8 1.4-.1 2.8-.4 4.1-.9.7-.3 1.4-.6 2-1.1.6-.5 1.1-1.1 1.2-1.9v-.1h-.1c-.9-.5-1.9-1.2-2.1-2.2-.1-.5-.1-1 0-1.6.1-.5.3-1.1.5-1.5.3-.4.8-.7 1.2-.9.5-.2 1-.3 1.6-.2 1.1 0 2.1.4 2.9 1.1.8.7 1 1.8.8 2.8-.2 1-.7 2-1.3 2.9-1.3 1.7-3.1 3.1-5 4.2l.1.3-.2.4c1.9.9 3.6 2.2 5 4zm12.2-4.7v.2c0 .7-.4 1.5-1 1.9-.6.5-1.4.7-2.1.8-1.6.2-3.2.1-4.7-.2-.8-.1-1.6-.3-2.3-.5-.8-.2-1.5-.4-2.3-.7-1.5-.4-3-1-4.4-1.5 1.5-.5 2.9-1.1 4.4-1.5.8-.2 1.5-.5 2.3-.7l1.2-.3c.4-.1.8-.1 1.2-.2 1.6-.3 3.2-.4 4.8-.2.8.1 1.5.4 2.1.9.5.5.8 1.3.8 2zM26.4 13c.2.5.5 1 .9 1.5-.4-1.9-.5-3.7-.3-5.6 0-1 .1-1.9.3-2.8.3-.9.7-1.7 1.3-2.3.6-.6 1.4-1.1 2.3-1.2.8-.1 1.8.2 2.2.8.2.3.3.8.2 1.1-.1.4-.4.7-.8.8-.4.1-.8 0-1-.3-.3-.3-.5-.7-.6-1.2l-.2-.6-.1.6c-.3 1.3.7 2.6 2 2.6.6 0 1.2-.3 1.6-.8.4-.4.6-1.1.4-1.7-.3-1.2-1.3-2.1-2.4-2.4-1.1-.4-2.4-.2-3.4.3-1.1.6-1.9 1.5-2.4 2.5-.5 1.1-.8 2.2-.8 3.4-.1 1.2.1 2.3.3 3.4.1.8.2 1.3.5 1.9zm-.5-5.1c.1-1.1.3-2.2.8-3.2s1.2-1.8 2.2-2.4c.9-.6 2.1-.7 3.2-.5 1.1.3 2 1.1 2.3 2.2.3 1.1-.7 2.2-1.8 2.2-.8 0-1.4-.6-1.6-1.3.1.1.2.3.3.4.2.2.4.4.7.5.3.1.6.1.8 0 .5-.2 1-.6 1.1-1.1.1-.5 0-1.1-.3-1.6-.6-.9-1.7-1.2-2.7-1.1-1 .1-1.9.7-2.6 1.4-.7.7-1.2 1.6-1.4 2.6-.3.9-.3 1.9-.4 2.8 0 1.9.1 3.8.7 5.6-1.1-1.9-1.4-4.3-1.3-6.5z"
+                  fill="#d4b051"
+                ></path>
+                <path
+                  d="M212.5 22h-25.8c-8.6 0-17.2-.1-25.8-.1-2.3 0-4.6 0-6.8-.1 2.3 0 4.6 0 6.8-.1 8.6 0 17.2-.2 25.8-.1h25.8c8.6 0 17.2-.1 25.8-.1 8.6-.1 17.2-.1 25.8-.3v-.1c-8.6-.1-17.2 0-25.8 0-8.6 0-17.2 0-25.8.1l-25.8.2c-8.6.1-17.2 0-25.8 0h-51.6c-17.1 0-34.2.2-51.4 0-.1-1-.6-2-1.5-2.6-.9-.6-2.2-.6-3 .1-.5.4-.8 1-.9 1.6-2.2-.2-4.3-.4-6.5-.6-2.2-.3-4.3-.6-6.4-1.2-2.1-.6-4.1-1.5-5.6-3.1-.7-.8-1.3-1.7-1.7-2.7-.3-.8-.5-1.9-.3-2.9l-.4-.1c-.7 2.7-.3 5.6.9 8-2.2-.9-4-2.8-4.6-5.2h-.2c.3 1.9 1 3.7 2 5.2.7 1.1 1.6 2 2.6 2.9-1.9.1-3.8-.4-5.5-1.3-.9-.4-1.7-1-2.4-1.6-.7-.6-1.3-1.4-1.9-2.2l-.8-1.3.3 1.5c.3 1.1.5 2.2 1 3.3.1.2.2.3.3.5h-.1c-.1 0-.2-.1-.3-.2-.2-.1-.4-.3-.7-.4-1.7-1.1-3.2-2.6-3.7-4.5-.3-1-.3-2-.1-2.9.2-.9.8-1.9 1.7-2.2.4-.2.9-.2 1.3 0s.7.6.7 1.1c0 .5-.3.9-.7 1-.4.1-1-.2-1.1-.6l-.1-.6v.6c0 .5.2.9.5 1.2.4.3.9.4 1.3.2.4-.1.8-.4 1-.9.2-.4.2-.9.1-1.4-.2-.9-1-1.6-1.9-1.8-.9-.2-1.9-.1-2.7.3-.8.4-1.6 1-2 1.9-.4.9-.4 1.8-.2 2.7.2.9.5 1.7 1 2.5.4.8 1 1.5 1.6 2.1.7.7 1.6 1.3 2.6 1.7.2.1.5.2.7.3.3.1.5.1.8.1h.2l.1-.1c.2.3.3.5.5.7-1.9 0-3.9 0-5.8.1-.8 0-1.7 0-2.5.1h-.1c-1.3-.4-2.7-.8-3.6-1.9-.4-.5-.7-1.2-.6-1.9.1-.7.4-1.4.3-2.1-.1-.8-.7-1.4-1.4-1.7-.8-.3-1.6 0-2.2.6-.6.6-.7 1.4-.5 2.1.2.7.5 1.3 1 1.9.8 1 1.8 2 3 2.7.3.2.6.3 1 .4h-.5c-2 0-4.1.2-6.1.1-1-.1-2-.3-3-.3s-2.2.2-2.9 1v.2l.1.1v.1c.8.8 1.9.9 2.9.9 1-.1 2-.3 3-.4 2-.2 4.1.1 6.1.2h.6c-.4.1-.7.3-1.1.5-1.2.7-2.2 1.6-3 2.7-.4.6-.8 1.2-1 1.9-.2.7 0 1.6.5 2.1.5.6 1.4.8 2.2.6.7-.3 1.3-.9 1.4-1.7.1-.8-.2-1.4-.3-2.1-.1-.7.2-1.4.6-1.9.9-1.1 2.2-1.5 3.6-1.9h.1c.8 0 1.6.1 2.4.1 2 0 4 .1 6 .1-.4.4-.7 1-.9 1.5-.5 1-.8 2.1-1 3.2l-.2.8.5-.7c.6-.8 1.2-1.5 2-2.1.7-.6 1.5-1.2 2.4-1.6 1.7-.8 3.5-1.3 5.4-1.2-2.5 2-4.3 4.9-4.7 8.1l.5.1c.5-2.2 2.2-4.1 4.2-5-1.1 2.4-1.4 5.2-.7 7.8l.5-.1c-.4-2.1.5-4.2 2-5.8 1.5-1.6 3.5-2.5 5.6-3.1 2.1-.6 4.3-.9 6.4-1.2 2.1-.2 4.3-.4 6.4-.6 0 .2.1.3.1.5.2.5.5 1 1.1 1.3.5.3 1.1.3 1.6.2.5-.1 1-.4 1.4-.7.4-.3.7-.7.9-1.1.2-.3.3-.7.4-1 17.1-.2 34.2.1 51.4 0h77.4l25.8.2c8.6.1 17.2.1 25.8.1h25.8v-.1l-25.8-.3c-8.7-.2-17.3-.3-25.8-.3zM21.7 19.5c-1-.3-1.9-.9-2.6-1.6-.6-.6-1.2-1.3-1.6-2.1-.4-.8-.7-1.6-.8-2.5-.1-.9-.1-1.7.3-2.5.4-.7 1-1.3 1.8-1.7.8-.3 1.6-.5 2.4-.4.8.2 1.6.7 1.8 1.6.1.4.1.8-.1 1.2-.2.4-.5.7-.9.8-.4.1-.9 0-1.2-.2-.2-.1-.3-.3-.4-.6.3.3.7.4 1.1.4.6-.1 1-.7 1-1.3 0-.6-.3-1.2-.8-1.4-.5-.3-1.1-.3-1.7-.2-.5.2-1 .6-1.3 1-.3.5-.5 1-.7 1.5-.3 1.1-.2 2.2.1 3.2.3 1 .8 2 1.6 2.8.7.8 1.6 1.4 2.5 1.9.2.1.3.2.5.3h-.3c-.2 0-.4-.2-.7-.2zM8.8 17.8c-.4-.6-.7-1.2-.8-1.9-.1-.7.2-1.3.7-1.8.5-.4 1.1-.7 1.7-.5.6.1 1.2.6 1.3 1.3.1.7-.1 1.4-.3 2.1-.1.7.1 1.5.5 2.1.4.6 1 1.1 1.6 1.5.1 0 .2.1.3.1-.7-.1-1.3-.3-1.9-.6-1.2-.5-2.3-1.3-3.1-2.3zm3.1 6.8c-.4.6-.6 1.4-.5 2.1.1.7.4 1.4.3 2.1-.1.6-.7 1.1-1.3 1.3-.6.2-1.3-.1-1.7-.5-.5-.4-.7-1.1-.7-1.8.1-.7.4-1.3.8-1.9.8-1.1 1.9-1.8 3.1-2.3.6-.3 1.3-.5 1.9-.6-.1 0-.2.1-.3.1-.6.4-1.2.8-1.6 1.5zm6.4-2.1c-.6 0-1.3-.1-1.9-.1l-.7-.1h-1.1c-.8 0-1.6-.1-2.4-.1-2 0-4.1-.1-6.1.1-1 .1-2 .3-3 .4-1 .1-2-.2-2.7-.8.7-.7 1.7-.9 2.6-.8 1 .1 2 .3 3 .4 2.1.2 4.1 0 6.1 0 .9 0 1.8-.1 2.7-.1H16c.7 0 1.4-.1 2.2-.1 2-.1 3.9-.3 5.9-.4.4.4.8.8 1.4 1h.1-.1c-.5.3-.9.6-1.2 1-2-.2-4-.3-6-.4zm8.4 1.1c-.9.4-1.8 1-2.5 1.7-.6.5-1.1 1.1-1.5 1.7.2-.9.4-1.7.8-2.5.5-1 1.2-1.9 2.2-2.4l.3-.2.2-.1-.2-.1-.3-.2c-.9-.5-1.6-1.5-2.1-2.4-.3-.6-.5-1.3-.6-1.9l1.2 1.2c.8.7 1.6 1.2 2.5 1.6 1.8.8 3.8 1.2 5.7.9.4.3.8.6 1.3.9-.5.3-.9.6-1.3.9-1.9-.2-3.9.1-5.7.9zm19.3-.3c-2.2.2-4.4.5-6.5 1.1-2.1.6-4.2 1.5-5.8 3.1-.9.9-1.6 2-2 3.3 0-1.8.5-3.6 1.3-5.2l.3-.6-.7.2c-1.6.5-3 1.6-4 3 .3-.9.8-1.7 1.3-2.5 1-1.5 2.4-2.9 4-3.8l.2-.1-.2-.1.1-.1c-2.8-1.7-5-4.4-5.8-7.6.9 2 2.6 3.6 4.6 4.3l.3.1-.2-.3c-.9-1.7-1.4-3.7-1.3-5.7.3 1.4 1.1 2.6 2 3.6 1.6 1.6 3.7 2.5 5.8 3.1 2.1.6 4.3.9 6.5 1.1 2.2.2 4.4.3 6.5.4-.1.3-.1.7 0 1.1v.1c-.1.3-.2.7-.1 1.1-2 .1-4.1.2-6.3.4zm10.6.9c-.4.4-.9.5-1.4.5-.5 0-1-.1-1.4-.4-.8-.5-1.3-1.5-1.1-2.5v-.1c-.3-.9.1-2 .9-2.4.8-.5 1.8-.4 2.5.1s1.2 1.4 1.3 2.3c.3.9-.1 1.9-.8 2.5zm1.4-2.6c3.4.1 6.7.2 10.1.2-3.4 0-6.7.1-10.1.2v-.4z"
+                  fill="#d4b051"
+                ></path>
+                <path
+                  d="M32.6 37.2c-1.3 0-2.3 1.3-2 2.6l.1.6.2-.6c.2-.4.4-.9.6-1.2.3-.3.7-.5 1-.3.4.1.7.4.8.8.1.4 0 .8-.2 1.1-.5.7-1.4 1-2.2.8-.9-.1-1.7-.6-2.3-1.2-.6-.6-1-1.5-1.3-2.3-.3-.9-.4-1.8-.4-2.7-.1-1.9-.1-3.7.3-5.6-.4.5-.7 1-.9 1.5-.2.5-.4 1.1-.5 1.6-.2 1.1-.4 2.3-.3 3.4.1 1.2.3 2.3.8 3.4.5 1 1.3 2 2.4 2.5 1 .6 2.3.7 3.4.3 1.1-.3 2.1-1.2 2.4-2.4.1-.6 0-1.2-.4-1.7-.3-.3-.9-.6-1.5-.6zm1.8 2.4c-.2 1.1-1.2 1.9-2.3 2.2-1.1.3-2.2.1-3.2-.5-.9-.6-1.7-1.4-2.2-2.4-.5-1-.8-2.1-.8-3.2-.1-2.2.1-4.6 1.3-6.5-.6 1.7-.7 3.7-.7 5.6 0 .9.1 1.9.4 2.8.3.9.7 1.9 1.4 2.6.7.7 1.6 1.3 2.6 1.4 1 .1 2.1-.2 2.8-1.1.3-.5.4-1 .3-1.6-.1-.5-.6-1-1.1-1.1-.3-.1-.6-.1-.8 0-.3.1-.5.3-.7.5-.1.1-.2.3-.3.4.2-.7.8-1.3 1.6-1.3.9 0 2 1.1 1.7 2.2zM22.1 31.2c-.4-.1-1-.1-1.3.2-.4.3-.6.7-.5 1.2l.1.6.1-.6c.1-.5.6-.7 1.1-.6.4.1.7.6.7 1 0 .5-.3.9-.7 1.1-.4.2-.9.2-1.3 0-.9-.3-1.4-1.3-1.7-2.2-.2-1-.2-2 .1-2.9.5-1.9 2-3.5 3.7-4.5.2-.1.4-.3.7-.4.1-.1.2-.1.3-.2h.1v-.2l-.1-.1h-.2c-.3 0-.5.1-.8.1-.3.1-.5.2-.7.3-1 .4-1.8 1-2.6 1.7-.6.6-1.2 1.3-1.6 2.1-.5.8-.8 1.6-1 2.5-.2.9-.2 1.8.2 2.7.4.9 1.1 1.5 2 1.9.8.4 1.8.5 2.7.3.9-.2 1.7-.9 1.9-1.8.1-.5.1-.9-.1-1.4-.3-.4-.7-.7-1.1-.8zm1 2.1c-.2.8-1 1.4-1.8 1.6-.8.2-1.7 0-2.4-.4s-1.4-.9-1.8-1.7c-.4-.7-.4-1.6-.3-2.5.1-.9.4-1.7.8-2.5s.9-1.5 1.6-2.1c.8-.7 1.6-1.3 2.6-1.6.2-.1.5-.2.7-.3h.3c-.2.1-.3.2-.5.3-.9.5-1.8 1.1-2.5 1.9-.7.8-1.3 1.8-1.6 2.8-.3 1-.3 2.2-.1 3.2.1.5.4 1 .7 1.5.3.5.8.8 1.3 1 .5.2 1.2.2 1.7-.1.5-.3.9-.8.8-1.4 0-.6-.4-1.2-1-1.3-.4-.1-.8.1-1.1.4.1-.2.2-.4.4-.6.3-.3.8-.4 1.2-.2.4.1.7.4.9.8.1.4.2.8.1 1.2z"
+                  fill="#d4b051"
+                ></path>
+              </g>
+            </svg>
+          </div>
+
+          <h1
+            class="text-[#d4b051] parisienne-font text-2xl animate-fade-in-bottom-up"
+          >
+            Resepsi Pernikahan
+          </h1>
+          <h3
+            class="fraunces-font text-white text-md animate-fade-in-bottom-up"
+          >
+            Rabu, 20 November 2024
+          </h3>
+          <h3
+            class="fraunces-font text-white text-md animate-fade-in-bottom-up"
+          >
+            Pukul 11.00 WITA - Selesai
+          </h3>
+          <h3
+            class="fraunces-font text-white text-md text-center animate-fade-in-bottom-up"
+          >
+            Gedung Islamic Center Jl. H. Agussalim Kota Parepare
+          </h3>
+
+          <!-- HTML Countdown Timer -->
+          <div
+            class="countdown-wrapper flex flex-col items-center space-y-2 animate-fade-in-bottom-up"
+          >
+            <div class="countdown grid grid-cols-4 gap-2 text-center">
+              <div
+                class="countdown-item flex flex-col items-center bg-[#8A5A2C] text-white rounded-lg py-3 px-4"
+              >
+                <div id="days" class="number text-2xl font-bold fraunces-font">
+                  00
+                </div>
+                <div class="text text-sm fraunces-font">Hari</div>
+              </div>
+              <div
+                class="countdown-item flex flex-col items-center bg-[#8A5A2C] text-white rounded-lg py-3 px-4"
+              >
+                <div id="hours" class="number text-2xl font-bold fraunces-font">
+                  00
+                </div>
+                <div class="text text-sm fraunces-font">Jam</div>
+              </div>
+              <div
+                class="countdown-item flex flex-col items-center bg-[#8A5A2C] text-white rounded-lg py-3 px-4"
+              >
+                <div
+                  id="minutes"
+                  class="number text-2xl font-bold fraunces-font"
+                >
+                  00
+                </div>
+                <div class="text text-sm fraunces-font">Menit</div>
+              </div>
+              <div
+                class="countdown-item flex flex-col items-center bg-[#8A5A2C] text-white rounded-lg py-3 px-4"
+              >
+                <div
+                  id="seconds"
+                  class="number text-2xl font-bold fraunces-font"
+                >
+                  00
+                </div>
+                <div class="text text-sm fraunces-font">Detik</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="relative w-full h-full flex flex-col justify-center content-page"
+        id="mapsPage"
+      >
+        <!-- Top Decorative Images -->
+        <div class="absolute top-0 w-full animate-fade-in-top-down">
+          <img src="tm.webp" class="rounded-lg" />
+        </div>
+        <div
+          class="absolute top-0 left-0 w-[50%] animate-fade-in-top-left rounded-lg"
+        >
+          <img src="tl.webp" />
+        </div>
+        <div class="absolute top-0 right-0 w-[50%] animate-fade-in-top-right">
+          <img src="tr.webp" />
+        </div>
+
+        <!-- Bottom Decorative Images -->
+        <div class="absolute bottom-0 w-full animate-fade-in-bottom-up">
+          <img src="bm.webp" />
+        </div>
+        <div
+          class="absolute bottom-0 left-0 w-[50%] animate-fade-in-bottom-left"
+        >
+          <img src="bl.webp" />
+        </div>
+        <div
+          class="absolute bottom-0 right-0 w-[50%] animate-fade-in-bottom-right"
+        >
+          <img src="br.webp" />
+        </div>
+
+        <!-- Left Centered Image -->
+        <div
+          class="absolute left-0 top-1/2 transform -translate-y-1/2 w-[23px]"
+        >
+          <img src="left.webp" class="animate-fade-in-left" />
+        </div>
+
+        <div
+          class="absolute right-0 top-1/2 transform -translate-y-1/2 w-[23px]"
+        >
+          <img src="right.webp" class="animate-fade-in-right" />
+        </div>
+        <div class="p-4 flex justify-center items-center flex-col gap-4">
+          <iframe
+            class="rounded-xl animate-zoom-in"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1864.016952751366!2d119.62270337716606!3d-4.015904458626651!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d95bb3c52a2acd9%3A0x957408fc49404652!2sIslamic%20Center!5e1!3m2!1sen!2sid!4v1731027417194!5m2!1sen!2sid"
+            width="350"
+            height="300"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+          <h3
+            class="fraunces-font text-white text-md text-center animate-fade-in-bottom-up"
+          >
+            <span
+              class="fraunces-font text-[#d4b051] font-bold text-md text-center"
+              >Gedung Islamic Center</span
+            ><br />
+            Jl. H. Agussalim, Mallusetasi, Ujung, Parepare, Sulawesi Selatan
+            91111
+          </h3>
+          <div
+            class="rounded-lg z-10 px-2 py-3 bg-[#d4b051] flex items-center justify-center animate-fade-in-bottom-up"
+          >
+            <a
+              class="fraunces-font text-[#5d071f] font-bold text-md"
+              href="https://maps.app.goo.gl/RKkhosFEQXQd6xyz9"
+              >Petunjuk Ke Lokasi</a
+            >
+          </div>
+        </div>
+      </div>
+      <div
+        class="relative w-full h-full flex flex-col justify-center content-page"
+        id="giftPage"
+      >
+        <!-- Top Decorative Images -->
+        <div class="absolute top-0 w-full animate-fade-in-top-down">
+          <img src="tm.webp" class="rounded-lg" />
+        </div>
+        <div
+          class="absolute top-0 left-0 w-[50%] animate-fade-in-top-left rounded-lg"
+        >
+          <img src="tl.webp" />
+        </div>
+        <div class="absolute top-0 right-0 w-[50%] animate-fade-in-top-right">
+          <img src="tr.webp" />
+        </div>
+
+        <!-- Bottom Decorative Images -->
+        <div class="absolute bottom-0 w-full animate-fade-in-bottom-up">
+          <img src="bm.webp" />
+        </div>
+        <div
+          class="absolute bottom-0 left-0 w-[50%] animate-fade-in-bottom-left"
+        >
+          <img src="bl.webp" />
+        </div>
+        <div
+          class="absolute bottom-0 right-0 w-[50%] animate-fade-in-bottom-right"
+        >
+          <img src="br.webp" />
+        </div>
+
+        <!-- Left Centered Image -->
+        <div
+          class="absolute left-0 top-1/2 transform -translate-y-1/2 w-[23px]"
+        >
+          <img src="left.webp" class="animate-fade-in-left" />
+        </div>
+
+        <div
+          class="absolute right-0 top-1/2 transform -translate-y-1/2 w-[23px]"
+        >
+          <img src="right.webp" class="animate-fade-in-right" />
+        </div>
+
+        <div class="flex justify-center flex-col items-center gap-4">
+          <h1
+            class="text-[#d4b051] parisienne-font text-3xl animate-fade-in-top-down"
+          >
+            Wedding Gift
+          </h1>
+          <h3
+            class="fraunces-font text-white text-md animate-fade-in-top-down text-center p-4"
+          >
+            Terima kasih telah menambah semangat kegembiraan pernikahan kami
+            dengan kehadiran dan hadiah indah Anda.
+          </h3>
+          <div
+            class="p-3 text-left mb-3 rounded-xl font-mono w-full max-w-[320px] shadow-xl animate-zoom-in"
+            style="
+              background: linear-gradient(
+                113deg,
+                rgb(217, 217, 217) 0%,
+                rgb(255, 255, 255) 23%,
+                rgb(229, 229, 229) 31%,
+                rgb(253, 253, 253) 61%,
+                rgb(186, 186, 186) 100%
+              );
+            "
+          >
+            <div class="mb-2 text-gray-800 text-sm">BANK BRI</div>
+            <div class="mb-3 flex items-center justify-between">
+              <div
+                class="relative w-[70px] h-[45px] rounded-lg overflow-hidden bg-gradient-to-tr from-[#D58A33] via-[#FFE578] to-[#C18C01]"
+              >
+                <div
+                  class="absolute w-full h-[1px] bg-[#9F7B12] top-1/4 left-0 right-0 rounded-full"
+                ></div>
+                <div
+                  class="absolute w-full h-[1px] bg-[#9F7B12] bottom-1/4 left-0 right-0 rounded-full"
+                ></div>
+                <div
+                  class="absolute w-[1px] h-[1px] bg-[#9F7B12] left-[70%] bottom-1/2 rounded-full"
+                ></div>
+                <div
+                  class="absolute w-[1px] h-[1px] bg-[#9F7B12] left-0 bottom-1/2 right-[70%] rounded-full"
+                ></div>
+                <div
+                  class="absolute w-[1px] bg-[#9F7B12] top-0 bottom-0 right-[30%] rounded-full"
+                ></div>
+                <div
+                  class="absolute w-[1px] bg-[#9F7B12] top-0 bottom-0 left-[30%] rounded-full"
+                ></div>
+              </div>
+              <div
+                class="w-[80px] h-[40px] rounded-lg overflow-hidden bg-white"
+              >
+                <img
+                  src="logo-bri-1688609239.jpg"
+                  alt="logo-bri"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+            <div class="tex-md font-bold text-gray-800 inline">
+              0064 0101 5493 531
+            </div>
+            <button
+              type="button"
+              class="btn btn-sm btn-primary ml-2 mb-1 font-sans rounded-md text-white bg-blue-500 hover:bg-blue-600 py-2 px-3"
+              data-text="006401015493531"
+              onclick="copyText(this)"
+            >
+              Salin
+            </button>
+            <div class="text-mdtext-gray-800">ASWAR AHAD</div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="relative w-full h-full flex flex-col justify-center content-page"
+        id="thanksPage"
+      >
+        <!-- Top Decorative Images -->
+        <div class="absolute top-0 w-full animate-fade-in-top-down">
+          <img src="tm.webp" class="rounded-lg" />
+        </div>
+        <div
+          class="absolute top-0 left-0 w-[50%] animate-fade-in-top-left rounded-lg"
+        >
+          <img src="tl.webp" />
+        </div>
+        <div class="absolute top-0 right-0 w-[50%] animate-fade-in-top-right">
+          <img src="tr.webp" />
+        </div>
+
+        <!-- Bottom Decorative Images -->
+        <div class="absolute bottom-0 w-full animate-fade-in-bottom-up">
+          <img src="bm.webp" />
+        </div>
+        <div
+          class="absolute bottom-0 left-0 w-[50%] animate-fade-in-bottom-left"
+        >
+          <img src="bl.webp" />
+        </div>
+        <div
+          class="absolute bottom-0 right-0 w-[50%] animate-fade-in-bottom-right"
+        >
+          <img src="br.webp" />
+        </div>
+
+        <!-- Left Centered Image -->
+        <div
+          class="absolute left-0 top-1/2 transform -translate-y-1/2 w-[23px]"
+        >
+          <img src="left.webp" class="animate-fade-in-left" />
+        </div>
+
+        <div
+          class="absolute right-0 top-1/2 transform -translate-y-1/2 w-[23px]"
+        >
+          <img src="right.webp" class="animate-fade-in-right" />
+        </div>
+
+        <div class="flex justify-center flex-col items-center gap-4">
+          <h3
+            class="fraunces-font text-white text-md animate-fade-in-top-down text-center p-4"
+          >
+            Merupakan suatu kebahagiaan dan kehormatan bagi kami, apabila
+            Bapak/Ibu/Saudara/i, berkenan hadir dan memberikan do'a restu kepada
+            kedua mempelai..
+          </h3>
+          <h3
+            class="fraunces-font-italic text-white text-md animate-fade-in-top-down text-center p-4"
+          >
+            Hormat Kami Yang Mengundang
+          </h3>
+          <h1
+            class="text-[#d4b051] fraunces-font-italic text-3xl animate-fade-in-top-down"
+          >
+            Aswar & Rahmah
+          </h1>
+        </div>
+      </div>
+    </div>
+    <!--Navigasi-->
+    <div
+      id="navigates"
+      class="hidden flex justify-around over gap-4 justify-center items-center w-full bg-[#761332] h-[68px] rounded-b-xl"
+    >
+      <div class="grid overflow-x-scroll hide-scroll-bar">
+        <div
+          class="grid h-full min-w-[800px] gap-2 grid-cols-10 mx-auto font-medium"
+        >
+          <!--Cover Page-->
+          <button
+            onclick="navigate('coverPage')"
+            id="cover"
+            class="inline-flex flex-col items-center justify-center rounded-xl px-2 py-2 hover:bg-[#d4b051] group"
+          >
+            <svg
+              width="24"
+              height="24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                id="cover-path"
+                d="M9.144 20.782v-3.067c0-.777.632-1.408 1.414-1.413h2.875c.786 0 1.423.633 1.423 1.413v3.058c0 .674.548 1.222 1.227 1.227h1.96a3.46 3.46 0 0 0 2.444-1 3.41 3.41 0 0 0 1.013-2.422V9.866c0-.735-.328-1.431-.895-1.902l-6.662-5.29a3.115 3.115 0 0 0-3.958.071L3.467 7.963A2.474 2.474 0 0 0 2.5 9.867v8.703C2.5 20.464 4.047 22 5.956 22h1.916c.327.002.641-.125.873-.354.232-.228.363-.54.363-.864h.036Z"
+                fill="#ffffff"
+              ></path>
+            </svg>
+            <span class="text-white fraunces-font" id="cover-span">Cover</span>
+          </button>
+
+          <button
+            onclick="navigate('openingPage')"
+            id="opening"
+            class="inline-flex flex-col items-center justify-center rounded-xl px-2 py-2 hover:bg-[#d4b051] group"
+          >
+            <svg
+              width="24"
+              height="24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                id="opening-path"
+                opacity=".4"
+                d="M22 15.94c0 2.79-2.24 5.05-5.03 5.06H7.05C4.27 21 2 18.75 2 15.96v-.01s.006-4.426.014-6.652a.498.498 0 0 1 .808-.392c2.376 1.885 6.625 5.322 6.678 5.367.71.57 1.61.89 2.53.89.92 0 1.82-.32 2.53-.9.053-.036 4.207-3.37 6.619-5.286a.5.5 0 0 1 .811.39c.01 2.21.01 6.573.01 6.573Z"
+                fill="#ffffff"
+              ></path>
+              <path
+                id="opening-path-2"
+                d="M21.476 5.674A5.035 5.035 0 0 0 17.03 3H7.05a5.035 5.035 0 0 0-4.446 2.674.864.864 0 0 0 .221 1.078l7.425 5.939c.52.42 1.15.629 1.78.629h.02c.63 0 1.26-.21 1.78-.63l7.425-5.938a.864.864 0 0 0 .221-1.078Z"
+                fill="#ffffff"
+              ></path>
+            </svg>
+            <span class="text-white fraunces-font" id="opening-span"
+              >Opening</span
+            >
+          </button>
+          <button
+            onclick="navigate('bridePage')"
+            id="bride"
+            class="inline-flex flex-col items-center justify-center rounded-xl px-2 py-2 hover:bg-[#d4b051] group"
+          >
+            <svg
+              width="24"
+              height="24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                id="bride-path"
+                opacity=".4"
+                d="M11.776 21.837a36.258 36.258 0 0 1-6.328-4.957 12.668 12.668 0 0 1-3.03-4.805C1.278 8.535 2.603 4.49 6.3 3.288A6.282 6.282 0 0 1 12.007 4.3a6.291 6.291 0 0 1 5.706-1.012c3.697 1.201 5.03 5.247 3.893 8.787a12.67 12.67 0 0 1-3.013 4.805 36.58 36.58 0 0 1-6.328 4.957l-.25.163-.24-.163Z"
+                fill="#ffffff"
+              ></path>
+              <path
+                id="bride-path-2"
+                d="m12.01 22-.234-.163a36.316 36.316 0 0 1-6.337-4.957 12.667 12.667 0 0 1-3.048-4.805c-1.13-3.54.195-7.586 3.892-8.787a6.296 6.296 0 0 1 5.728 1.023V22ZM18.23 10a.719.719 0 0 1-.517-.278.818.818 0 0 1-.167-.592c.022-.702-.378-1.341-.994-1.59-.391-.107-.628-.53-.53-.948.093-.41.477-.666.864-.573a.384.384 0 0 1 .138.052c1.236.476 2.036 1.755 1.973 3.155a.808.808 0 0 1-.23.56.708.708 0 0 1-.537.213Z"
+                fill="#ffffff"
+              ></path>
+            </svg>
+            <span class="text-white fraunces-font" id="bride-span">Bride</span>
+          </button>
+          <button
+            onclick="navigate('groomPage')"
+            id="groom"
+            class="inline-flex flex-col items-center justify-center rounded-xl px-2 py-2 hover:bg-[#d4b051] group"
+          >
+            <svg
+              width="24"
+              height="24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                id="groom-path"
+                opacity=".4"
+                d="M11.776 21.837a36.258 36.258 0 0 1-6.328-4.957 12.668 12.668 0 0 1-3.03-4.805C1.278 8.535 2.603 4.49 6.3 3.288A6.282 6.282 0 0 1 12.007 4.3a6.291 6.291 0 0 1 5.706-1.012c3.697 1.201 5.03 5.247 3.893 8.787a12.67 12.67 0 0 1-3.013 4.805 36.58 36.58 0 0 1-6.328 4.957l-.25.163-.24-.163Z"
+                fill="#ffffff"
+              ></path>
+              <path
+                id="groom-path-2"
+                d="m12.01 22-.234-.163a36.316 36.316 0 0 1-6.337-4.957 12.667 12.667 0 0 1-3.048-4.805c-1.13-3.54.195-7.586 3.892-8.787a6.296 6.296 0 0 1 5.728 1.023V22ZM18.23 10a.719.719 0 0 1-.517-.278.818.818 0 0 1-.167-.592c.022-.702-.378-1.341-.994-1.59-.391-.107-.628-.53-.53-.948.093-.41.477-.666.864-.573a.384.384 0 0 1 .138.052c1.236.476 2.036 1.755 1.973 3.155a.808.808 0 0 1-.23.56.708.708 0 0 1-.537.213Z"
+                fill="#ffffff"
+              ></path>
+            </svg>
+            <span class="text-white fraunces-font" id="groom-span">Groom</span>
+          </button>
+          <button
+            onclick="navigate('quotesPage')"
+            id="quotes"
+            class="inline-flex flex-col items-center justify-center rounded-xl px-2 py-2 hover:bg-[#d4b051] group"
+          >
+            <svg
+              width="24"
+              height="24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                id="quotes-path"
+                opacity=".4"
+                d="M16.191 2H7.81C4.77 2 3 3.78 3 6.83v10.33C3 20.26 4.77 22 7.81 22h8.381C19.28 22 21 20.26 21 17.16V6.83C21 3.78 19.28 2 16.191 2"
+                fill="#ffffff"
+              ></path>
+              <path
+                id="quotes-path-2"
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M8.08 6.65v.01a.78.78 0 0 0 0 1.56h2.989c.431 0 .781-.35.781-.791a.781.781 0 0 0-.781-.779H8.08Zm7.84 6.09H8.08a.78.78 0 0 1 0-1.561h7.84a.781.781 0 0 1 0 1.561Zm0 4.57H8.08c-.3.04-.59-.11-.75-.36a.795.795 0 0 1 .75-1.21h7.84c.399.04.7.38.7.79 0 .399-.301.74-.7.78Z"
+                fill="#ffffff"
+              ></path>
+            </svg>
+            <span class="text-white fraunces-font" id="quotes-span"
+              >Quotes</span
+            >
+          </button>
+          <button
+            onclick="navigate('galleryPage')"
+            id="gallery"
+            class="inline-flex flex-col items-center justify-center rounded-xl px-2 py-2 hover:bg-[#d4b051] group"
+          >
+            <svg
+              width="24"
+              height="24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                id="gallery-path"
+                d="M22 14.702v1.384c0 .23-.01.461-.03.69-.28 3.16-2.475 5.224-5.641 5.224H7.67c-1.603 0-2.956-.52-3.928-1.464a4.593 4.593 0 0 1-.951-1.232c.33-.402.7-.842 1.062-1.283a98.56 98.56 0 0 0 1.573-1.925c.55-.682 2.004-2.476 4.018-1.634.41.17.771.41 1.102.621.812.542 1.152.702 1.723.391.632-.34 1.043-1.012 1.473-1.714.23-.372.461-.732.712-1.063 1.092-1.423 2.775-1.804 4.178-.962.702.42 1.303.952 1.864 1.493.12.12.24.231.35.341.15.15.652.652 1.153 1.133Z"
+                fill="#ffffff"
+              ></path>
+              <path
+                id="gallery-path-2"
+                opacity=".4"
+                d="M16.339 2H7.67C4.275 2 2 4.376 2 7.914v8.172c0 1.232.28 2.326.792 3.218.33-.402.701-.842 1.062-1.284a95.981 95.981 0 0 0 1.573-1.924c.551-.682 2.004-2.476 4.018-1.634.41.17.771.41 1.102.621.812.542 1.152.702 1.723.39.632-.34 1.043-1.011 1.473-1.714.23-.37.461-.73.712-1.062 1.092-1.423 2.775-1.804 4.178-.962.702.42 1.303.952 1.864 1.493.12.12.24.231.35.342.151.149.652.65 1.153 1.133V7.914C22 4.376 19.726 2 16.339 2Z"
+                fill="#ffffff"
+              ></path>
+              <path
+                id="gallery-path-3"
+                d="M11.454 8.797a2.604 2.604 0 0 1-2.58 2.581c-1.408 0-2.58-1.173-2.58-2.581s1.172-2.582 2.58-2.582c1.407 0 2.58 1.174 2.58 2.582Z"
+                fill="#ffffff"
+              ></path>
+            </svg>
+            <span class="text-white fraunces-font" id="gallery-span"
+              >Gallery</span
+            >
+          </button>
+          <button
+            onclick="navigate('acaraPage')"
+            id="acara"
+            class="inline-flex flex-col items-center justify-center rounded-xl px-2 py-2 hover:bg-[#d4b051] group"
+          >
+            <svg
+              width="24"
+              height="24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                id="acara-path"
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M3 16.87V9.257h18v7.674C21 20.07 19.024 22 15.863 22H8.127C4.996 22 3 20.03 3 16.87Zm4.96-2.46a.822.822 0 0 1-.85-.799c0-.46.355-.84.81-.861.444 0 .81.351.82.8a.822.822 0 0 1-.78.86Zm4.06 0a.822.822 0 0 1-.85-.799c0-.46.356-.84.81-.861.445 0 .81.351.82.8a.822.822 0 0 1-.78.86Zm4.03 3.68a.847.847 0 0 1-.82-.85.831.831 0 0 1 .81-.849h.01c.465 0 .84.38.84.849 0 .47-.375.85-.84.85Zm-4.88-.85c.02.46.395.821.85.8a.821.821 0 0 0 .78-.859.817.817 0 0 0-.82-.801.855.855 0 0 0-.81.86Zm-4.07 0c.02.46.395.821.85.8a.821.821 0 0 0 .78-.859.817.817 0 0 0-.82-.801.855.855 0 0 0-.81.86Zm8.14-3.639c0-.46.356-.83.81-.84.445 0 .8.359.82.8a.82.82 0 0 1-.79.849.814.814 0 0 1-.84-.799v-.01Z"
+                fill="#ffffff"
+              ></path>
+              <path
+                id="acara-path-2"
+                opacity=".4"
+                d="M3.003 9.257c.013-.587.063-1.752.156-2.127.474-2.11 2.084-3.45 4.386-3.64h8.911c2.282.2 3.912 1.55 4.386 3.64.092.365.142 1.539.155 2.127H3.003Z"
+                fill="#ffffff"
+              ></path>
+              <path
+                id="acara-path-3"
+                d="M8.305 6.59c.435 0 .76-.329.76-.77V2.771A.748.748 0 0 0 8.306 2c-.435 0-.76.33-.76.771V5.82c0 .441.325.77.76.77ZM15.695 6.59c.425 0 .76-.329.76-.77V2.771a.754.754 0 0 0-.76-.771c-.435 0-.76.33-.76.771V5.82c0 .441.325.77.76.77Z"
+                fill="#ffffff"
+              ></path>
+            </svg>
+            <span class="text-white fraunces-font" id="acara-span">Acara</span>
+          </button>
+          <button
+            onclick="navigate('mapsPage')"
+            id="maps"
+            class="inline-flex flex-col items-center justify-center rounded-xl px-2 py-2 hover:bg-[#d4b051] group"
+          >
+            <svg
+              width="24"
+              height="24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                id="maps-path"
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M8.532 2.937a6.89 6.89 0 0 1 7.034.058C17.71 4.327 19.012 6.705 19 9.26c-.05 2.54-1.447 4.929-3.193 6.775a18.727 18.727 0 0 1-3.358 2.82 1.173 1.173 0 0 1-.408.144.82.82 0 0 1-.39-.119 18.515 18.515 0 0 1-4.839-4.547A9.28 9.28 0 0 1 5 9.134c-.001-2.562 1.347-4.928 3.532-6.197Zm1.262 7.258a2.378 2.378 0 0 0 2.198 1.497 2.339 2.339 0 0 0 1.683-.701c.446-.454.696-1.07.694-1.713a2.423 2.423 0 0 0-1.462-2.243 2.346 2.346 0 0 0-2.594.52 2.455 2.455 0 0 0-.519 2.64Z"
+                fill="#ffffff"
+              ></path>
+              <ellipse
+                id="maps-ellipse"
+                opacity=".4"
+                cx="12"
+                cy="21"
+                rx="5"
+                ry="1"
+                fill="#ffffff"
+              ></ellipse>
+            </svg>
+            <span class="text-white fraunces-font" id="maps-span">Maps</span>
+          </button>
+          <button
+            onclick="navigate('giftPage')"
+            id="gift"
+            class="inline-flex flex-col items-center justify-center rounded-xl px-2 py-2 hover:bg-[#d4b051] group"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="currentColor"
+              class="bi bi-gift-fill"
+              viewBox="0 0 18 18"
+            >
+              <path
+                id="gift-path"
+                d="M3 2.5a2.5 2.5 0 0 1 5 0 2.5 2.5 0 0 1 5 0v.006c0 .07 0 .27-.038.494H15a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h2.038A2.968 2.968 0 0 1 3 2.506V2.5zm1.068.5H7v-.5a1.5 1.5 0 1 0-3 0c0 .085.002.274.045.43a.522.522 0 0 0 .023.07zM9 3h2.932a.56.56 0 0 0 .023-.07c.043-.156.045-.345.045-.43a1.5 1.5 0 0 0-3 0V3zm6 4v7.5a1.5 1.5 0 0 1-1.5 1.5H9V7h6zM2.5 16A1.5 1.5 0 0 1 1 14.5V7h6v9H2.5z"
+              />
+            </svg>
+
+            <span class="text-white fraunces-font mt-1" id="gift-span"
+              >Gift</span
+            >
+          </button>
+          <button
+            onclick="navigate('thanksPage')"
+            id="thanks"
+            class="inline-flex flex-col items-center justify-center rounded-xl px-2 py-2 hover:bg-[#d4b051] group"
+          >
+            <svg
+              width="24"
+              height="24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                id="thanks-path"
+                opacity=".4"
+                d="M16.34 2H7.67C4.28 2 2 4.38 2 7.92v8.17C2 19.62 4.28 22 7.67 22h8.67c3.39 0 5.66-2.38 5.66-5.91V7.92C22 4.38 19.73 2 16.34 2Z"
+                fill="#ffffff"
+              ></path>
+              <path
+                id="thanks-path-2"
+                d="M10.813 15.248a.872.872 0 0 1-.619-.256l-2.373-2.373a.874.874 0 1 1 1.237-1.238l1.755 1.755 4.128-4.128a.874.874 0 1 1 1.237 1.238l-4.746 4.746a.872.872 0 0 1-.619.256Z"
+                fill="#ffffff"
+              ></path>
+            </svg>
+            <span class="text-white fraunces-font" id="thanks-span"
+              >Thanks</span
+            >
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+  <!-- Script untuk Navigasi -->
+  <script>
+    function navigate(pageId) {
+      // Sembunyikan semua konten
+      // Tampilkan pageId yang dipilih di console
+      console.log("Navigating to:", pageId);
+      // Dapatkan button yang sesuai berdasarkan pageId
+      const button = document.getElementById(pageId.replace("Page", ""));
+      console.log("Button navigasi yang dipilih:", button);
+      //   button.classList.remove("bg-[#d4b051]");
+      //   button.classList.add("bg-[#d4b051]");
+      document
+        .querySelectorAll(".content-page")
+        .forEach((page) => page.classList.add("hidden"));
+
+      // Tampilkan konten yang dipilih
+      document.getElementById(pageId).classList.remove("hidden");
+
+      // Hapus kelas 'bg-[#d4b051]' dari semua tombol
+      document
+        .querySelectorAll("#navigates button")
+        .forEach((btn) => btn.classList.remove("bg-[#d4b051]"));
+
+      // Tambahkan kelas 'bg-[#d4b051]' pada tombol yang sesuai
+      button.classList.add("bg-[#d4b051]");
+
+      //   // Ganti warna path pertama (dengan ID dinamis berdasarkan pageId)
+      //   const span = document.getElementById(pageId.replace("Page", "-span")); // ID path berdasarkan pageId
+
+      //   if (span) {
+      //     span.classList.add("text-[#3d0d19]"); // Ganti warna path
+      //   }else{
+      //     span.classList.remove"text-[#3d0d19]"); // Ganti warna path
+      //   }
+
+      // Ganti warna path pertama (dengan ID dinamis berdasarkan pageId)
+      const path = document.getElementById(pageId.replace("Page", "-path")); // ID path berdasarkan pageId
+
+      if (path) {
+        path.setAttribute("fill", "#3d0d19"); // Ganti warna path
+      }
+
+      // Ganti warna path kedua (jika ada, ID dinamis dengan tambahan '-path-2')
+      const path2 = document.getElementById(pageId.replace("Page", "-path-2"));
+
+      if (path2) {
+        path2.setAttribute("fill", "#3d0d19"); // Ganti warna path kedua
+      }
+
+      // Ganti warna path kedua (jika ada, ID dinamis dengan tambahan '-path-2')
+      const path3 = document.getElementById(pageId.replace("Page", "-path-3"));
+
+      if (path3) {
+        path2.setAttribute("fill", "#3d0d19"); // Ganti warna path kedua
+      }
+
+      const ellipse = document.getElementById(
+        pageId.replace("Page", "-ellipse")
+      ); // ID path berdasarkan pageId
+
+      if (ellipse) {
+        ellipse.setAttribute("fill", "#3d0d19"); // Ganti warna path kedua
+      }
+
+      // Ganti warna fill semua path lainnya menjadi #ffffff
+      document.querySelectorAll("svg path").forEach((p) => {
+        if (!p.id.includes(pageId.replace("Page", "-path"))) {
+          p.setAttribute("fill", "#ffffff"); // Ganti warna path yang tidak dipilih
+        }
+      });
+      document.querySelectorAll("svg ellipse").forEach((p) => {
+        if (!p.id.includes(pageId.replace("Page", "-ellipse"))) {
+          p.setAttribute("fill", "#ffffff"); // Ganti warna path yang tidak dipilih
+        }
+      });
+      // Pilih semua elemen <button> yang memiliki elemen <span> di dalamnya
+      document.querySelectorAll("button span").forEach((p) => {
+        // Cek jika ID elemen <span> mencocokkan dengan halaman yang sedang dipilih
+        if (p.id === `${pageId.replace("Page", "-span")}`) {
+          // Jika elemen dipilih, hapus kelas 'text-white'
+          p.classList.remove("text-white");
+        } else {
+          // Jika elemen tidak dipilih, tambahkan kelas 'text-white'
+          p.classList.add("text-white");
+        }
+      });
+    }
+
+    // Set halaman awal
+    navigate("splashPage");
+  </script>
+  <script>
+    // Mendapatkan parameter nama_tamu dari URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const namaTamu = urlParams.get("invite") || "Tamu yang Terhormat";
+
+    // Menampilkan nama tamu pada semua elemen dengan kelas 'invite'
+    document.querySelectorAll(".invite").forEach((element) => {
+      element.innerText = namaTamu;
+    });
+  </script>
+
+  <!-- JavaScript Countdown Timer -->
+  <script>
+    // Set the target date and time
+    const targetDate = new Date("2024-11-20T00:00:00").getTime();
+
+    // Update the countdown every 1 second
+    const countdownInterval = setInterval(() => {
+      // Get the current date and time
+      const now = new Date().getTime();
+
+      // Calculate the time difference
+      const distance = targetDate - now;
+
+      // Calculate days, hours, minutes, and seconds
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // Display the result in the corresponding elements
+      document.getElementById("days").innerText = days
+        .toString()
+        .padStart(2, "0");
+      document.getElementById("hours").innerText = hours
+        .toString()
+        .padStart(2, "0");
+      document.getElementById("minutes").innerText = minutes
+        .toString()
+        .padStart(2, "0");
+      document.getElementById("seconds").innerText = seconds
+        .toString()
+        .padStart(2, "0");
+
+      // If the countdown is finished, display 00 for all values
+      if (distance < 0) {
+        clearInterval(countdownInterval);
+        document.getElementById("days").innerText = "00";
+        document.getElementById("hours").innerText = "00";
+        document.getElementById("minutes").innerText = "00";
+        document.getElementById("seconds").innerText = "00";
+      }
+    }, 1000);
+  </script>
+
+  <script>
+    function copyText(button) {
+      // Ambil teks dari atribut data-text
+      const textToCopy = button.getAttribute("data-text");
+
+      // Buat elemen textarea sementara untuk menyalin teks
+      const tempInput = document.createElement("textarea");
+      tempInput.value = textToCopy;
+      document.body.appendChild(tempInput);
+
+      // Pilih teks dan salin ke clipboard
+      tempInput.select();
+      document.execCommand("copy");
+
+      // Hapus elemen textarea sementara
+      document.body.removeChild(tempInput);
+
+      // Ubah tampilan tombol untuk konfirmasi
+      button.textContent = "Disalin!";
+      button.classList.remove("bg-blue-500", "hover:bg-blue-600");
+      button.classList.add("bg-green-500", "hover:bg-green-600");
+
+      // Kembalikan teks tombol dan warna setelah beberapa detik
+      setTimeout(() => {
+        button.textContent = "Salin";
+        button.classList.remove("bg-green-500", "hover:bg-green-600");
+        button.classList.add("bg-blue-500", "hover:bg-blue-600");
+      }, 2000); // Mengembalikan setelah 2 detik
+    }
+  </script>
+
+  <script>
+    const dummyVideo = document.getElementById("dummyVideo");
+    const music = document.getElementById("music");
+
+    // Coba mulai audio setelah elemen video mulai
+    dummyVideo.addEventListener("play", function () {
+      music.play().catch((error) => {
+        console.log("Autoplay dicegah, minta izin pengguna.");
+      });
+    });
+
+    // Jika autoplay dicegah, minta pengguna untuk menyalakan audio
+    document.addEventListener(
+      "click",
+      () => {
+        music.play();
+      },
+      { once: true }
+    ); // Meminta izin hanya satu kali
+  </script>
+
+  <script>
+    function showInvitation() {
+      document.getElementById("splashPage").classList.add("hidden"); // Sembunyikan halaman cover
+      document.getElementById("pages").classList.remove("hidden"); // Tampilkan halaman undangan
+      document.getElementById("navigates").classList.remove("hidden"); // Tampilkan halaman undangan
+      navigate("openingPage");
+    }
+  </script>
+
+  <script>
+    let currentIndex = 0;
+    const totalImages = 6; // Jumlah total gambar
+    const imageWidth = 220; // Lebar setiap gambar (sama dengan container)
+    const imageSlider = document.getElementById("imageSlider");
+
+    // Tombol "Previous"
+    document.getElementById("prevBtn").addEventListener("click", () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+      } else {
+        currentIndex = totalImages - 1; // Loop ke gambar terakhir jika berada di gambar pertama
+      }
+      updateSlider();
+    });
+
+    // Tombol "Next"
+    document.getElementById("nextBtn").addEventListener("click", () => {
+      if (currentIndex < totalImages - 1) {
+        currentIndex++;
+      } else {
+        currentIndex = 0; // Loop ke gambar pertama jika berada di gambar terakhir
+      }
+      updateSlider();
+    });
+
+    // Fungsi untuk memperbarui posisi slider
+    function updateSlider() {
+      // Menghitung offset berdasarkan currentIndex
+      const offset = -currentIndex * imageWidth;
+      imageSlider.style.transform = `translateX(${offset}px)`;
+    }
+  </script>
+
+  <!-- JavaScript for Modal Functionality -->
+  <script>
+    function openModal(imageSrc) {
+      const modal = document.getElementById("modal");
+      const modalImage = document.getElementById("modal-image");
+
+      modalImage.src = imageSrc;
+      modal.classList.remove("modal-closed");
+      modal.classList.add("modal-open");
+    }
+
+    function closeModal() {
+      const modal = document.getElementById("modal");
+      modal.classList.add("modal-closed");
+      modal.classList.remove("modal-open");
+    }
+  </script>
+</html>
