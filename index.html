@@ -3,6 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:title" content="Undangan Pernikahan Aswar & Rahmah" />
+    <meta
+      property="og:description"
+      content="Tanpa mengurangi rasa hormat, kami mengundang Anda untuk hadir pada acara resepsi pernikahan kami."
+    />
+    <meta
+      property="og:image"
+      content="https://i.ibb.co.com/kSVZvHs/lamaran-aswar2.jpg"
+    />
+    <meta
+      property="og:url"
+      content="https://undangkita.github.io/aswardgnrahmah"
+    />
+    <meta property="og:type" content="website" />
     <title>Undangan Pernikahan</title>
     <link
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
@@ -64,6 +78,12 @@
       /* Background untuk undangan */
       .invitation-bg {
         background-image: url("bg.webp");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      .splash-bg {
+        background-image: url("lamaran_aswar2.jpg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -232,7 +252,7 @@
       class="relative w-full h-screen rounded-xl overflow-x-hidden overflow-y-hidden flex flex-col justify-center items-center text-center content-page"
       id="splashPage"
     >
-      <div class="invitation-bg w-full h-[100%] rounded-xl overflow-x-hidden">
+      <div class="splash-bg w-full h-[100%] rounded-xl overflow-x-hidden">
         <!-- Top Decorative Images -->
         <div class="absolute top-0 w-full animate-fade-in-top-down">
           <img src="tm.webp" class="rounded-lg" />
@@ -275,17 +295,9 @@
         </div>
         <!-- Teks di tengah halaman -->
         <div
-          class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 w-full flex items-center justify-center flex-col"
+          class="absolute top-1/2 left-1/2 transform -translate-x-1/2 translate-y-1/4 z-10 w-full flex items-center justify-center flex-col"
         >
-          <div class="text-center mb-6">
-            <h2
-              class="text-xl font-medium fraunces-font text-white animate-fade-in-top-down"
-            >
-              THE WEDDING OF
-            </h2>
-          </div>
-
-          <div class="text-center flex flex-row justify-center gap-8">
+          <!-- <div class="text-center flex flex-row justify-center gap-8">
             <div class="flex flex-col">
               <h2
                 class="text-[50px] font-medium against-font text-[#d4b051] animate-zoom-in"
@@ -309,27 +321,27 @@
                 R
               </h2>
             </div>
-          </div>
+          </div> -->
 
-          <h1
-            class="text-[#d4b051] mb-6 fraunces-font-italic text-3xl animate-fade-in-top-down"
-          >
-            Aswar & Rahmah
-          </h1>
-
-          <div
-            class="text-center mb-6 text-xl fraunces-font text-white animate-fade-in-bottom-up"
-          >
-            20 ✤ 11 ✤ 2024
-          </div>
-
-          <div
-            class="text-center mb-6 text-xl fraunces-font text-white flex flex-col gap-4"
-          >
-            <h1 class="animate-fade-in-bottom-up">
-              Kepada Yth<br />Bapak/Ibu/Saudara/I
+          <div class="backdrop-blur-sm bg-black/30 w-3/4 rounded-xl mb-2 py-2">
+            <h2
+              class="text-md text-white text-center font-medium fraunces-font animate-fade-in-top-down"
+            >
+              THE WEDDING OF
+            </h2>
+            <!-- ... -->
+            <h1
+              class="text-white fraunces-font-italic mb-4 text-2xl animate-fade-in-top-down"
+            >
+              Aswar & Rahmah
             </h1>
-            <h2 class="invite animate-fade-in-bottom-up">Nama Tamu</h2>
+
+            <div
+              class="text-center text-md fraunces-font text-white flex flex-col"
+            >
+              <h1 class="animate-fade-in-bottom-up">dear</h1>
+              <h2 class="invite animate-fade-in-bottom-up">Nama Tamu</h2>
+            </div>
           </div>
 
           <button
@@ -347,7 +359,7 @@
       id="pages"
     >
       <div
-        class="relative w-full h-full flex flex-col justify-center content-page"
+        class="relative w-full h-full flex flex-col justify-center content-page splash-bg"
         id="coverPage"
       >
         <!-- Top Decorative Images -->
@@ -391,59 +403,27 @@
           <img src="right.webp" class="animate-fade-in-right" />
         </div>
 
-        <div class="text-center mb-6">
+        <div
+          class="backdrop-blur-sm bg-black/30 w-3/4 rounded-xl mb-2 py-2 absolute top-1/2 left-1/2 transform -translate-x-1/2 translate-y-1/4 z-10 text-center"
+        >
           <h2
-            class="text-xl font-medium fraunces-font text-white animate-fade-in-top-down"
+            class="text-md text-white text-center font-medium fraunces-font animate-fade-in-top-down"
           >
             THE WEDDING OF
           </h2>
-        </div>
-
-        <div class="text-center flex flex-row justify-center gap-8">
-          <div class="flex flex-col">
-            <h2
-              class="text-[50px] font-medium against-font text-[#d4b051] animate-zoom-in"
-            >
-              A
-            </h2>
-          </div>
-          <div class="flex justify-center items-center">
-            <img
-              src="hearts.png"
-              width="42px"
-              height="42px"
-              alt=""
-              class="animate-zoom-in"
-            />
-          </div>
-          <div class="flex flex-col">
-            <h2
-              class="text-[50px] font-medium against-font text-[#d4b051] animate-zoom-in"
-            >
-              R
-            </h2>
-          </div>
-        </div>
-
-        <h1
-          class="text-[#d4b051] mb-6 text-center fraunces-font-italic text-3xl animate-fade-in-top-down"
-        >
-          Aswar & Rahmah
-        </h1>
-
-        <div
-          class="text-center mb-6 text-xl fraunces-font text-white animate-fade-in-bottom-up"
-        >
-          20 ✤ 11 ✤ 2024
-        </div>
-
-        <div
-          class="text-center mb-6 text-xl fraunces-font text-white flex flex-col gap-4"
-        >
-          <h1 class="animate-fade-in-bottom-up">
-            Kepada Yth<br />Bapak/Ibu/Saudara/I
+          <!-- ... -->
+          <h1
+            class="text-white fraunces-font-italic mb-4 text-2xl animate-fade-in-top-down"
+          >
+            Aswar & Rahmah
           </h1>
-          <h2 class="invite animate-fade-in-bottom-up">Nama Tamu</h2>
+
+          <div
+            class="text-center text-md fraunces-font text-white flex flex-col"
+          >
+            <h1 class="animate-fade-in-bottom-up">dear</h1>
+            <h2 class="invite animate-fade-in-bottom-up">Nama Tamu</h2>
+          </div>
         </div>
       </div>
 
@@ -508,7 +488,7 @@
             "
           >
             <img
-              src="lamaran_aswar2.jpg"
+              src="prewed7.jpg"
               alt="250812-gallery-Szl2OAbY6B.jpg"
               style="width: 100%; height: 100%; object-fit: cover"
             />
